@@ -2,17 +2,17 @@
 
 function ProblemSection() {
   const mobile = useIsMobile(820);
+  const [hovered, setHovered] = React.useState(false);
   const pains = [
     'Lớp quá đông, giáo viên khó theo sát.',
     'Không ai sửa bài Writing/Speaking chi tiết.',
     'Thiếu môi trường luyện tập thực tế mỗi ngày.',
     'Học nhiều nhưng không thấy tiến bộ.',
   ];
-  const bubbles = ['Lớp đông, ít tương tác', 'Không ai sửa bài chi tiết', 'Thiếu môi trường cọ xát', 'Lộ trình quá dài'];
   return (
-    <section className="section" style={{ background: E.greyPanel, borderBottom: `1px solid ${E.greyLine}` }}>
+    <section className="section" style={{ background: '#F7F7F7', borderBottom: `1px solid ${E.greyLine}` }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1.05fr', gap: mobile ? 32 : 56, alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: mobile ? 32 : 56, alignItems: 'center' }}>
           <div>
             <h2 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 'clamp(26px,4vw,38px)', lineHeight: 1.14, letterSpacing: '-0.02em', color: E.inkHead, margin: '0 0 24px' }}>
               Tại sao bạn vẫn ở band <span style={{ color: E.red }}>5.5</span>?
@@ -29,40 +29,50 @@ function ProblemSection() {
               ))}
             </div>
 
-            {/* Bridge card */}
-            <div style={{
-              padding: '18px 20px', background: '#fff', color: E.ink,
-              borderRadius: 14, border: `1px solid ${E.redTint}`,
-            }}>
+            {/* Bridge card (Giải pháp) */}
+            <div 
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              style={{
+                padding: '18px 20px', background: '#fff', color: E.ink,
+                borderRadius: 14, border: `1px solid ${E.redTint}`,
+                boxShadow: hovered ? E.shadowLg : E.shadowSm,
+                transform: hovered ? 'translateY(-6px) scale(1.02)' : 'none',
+                transition: 'transform 250ms ease, box-shadow 250ms ease',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 16,
+              }}
+            >
+              <svg 
+                width="20" 
+                height="20" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke={E.red} 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                style={{ 
+                  flexShrink: 0,
+                  transform: hovered ? 'translateX(4px)' : 'none',
+                  transition: 'transform 250ms ease',
+                }}
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
               <p style={{ fontFamily: E.fontBody, fontSize: 14.5, lineHeight: 1.5, margin: 0, color: E.ink2 }}>
                 <strong style={{ color: E.red }}>ENGONOW IELTS Master</strong> hóa giải bài toán này bằng sự tận tâm từ đội ngũ giáo viên và hệ thống LMS độc quyền.
               </p>
             </div>
           </div>
 
-          {/* Right — photo + thought bubbles (bubbles desktop-only) */}
+          {/* Right — photo (bubbles completely removed) */}
           <div style={{ position: 'relative' }}>
             <Slot id="pain-student" w="100%" h={mobile ? 300 : 400} radius={20}
               placeholder="Ảnh học viên nam căng thẳng, học một mình bên laptop" />
-            {!mobile && (
-              <>
-                <div style={{ position: 'absolute', top: -22, right: 60, zIndex: 3 }}>
-                  <svg width="48" height="40" viewBox="0 0 48 40" fill="none" stroke={E.ink4} strokeWidth="2.4" strokeLinecap="round">
-                    <path d="M10 30 Q4 22 13 19 Q23 16 20 26 Q18 33 28 29 Q39 25 33 16 Q28 9 38 8"/>
-                  </svg>
-                </div>
-                <div style={{ position: 'absolute', top: 10, right: -16, display: 'flex', flexDirection: 'column', gap: 14, zIndex: 3 }}>
-                  {bubbles.map((b, i) => (
-                    <div key={i} style={{
-                      background: '#fff', borderRadius: 999, padding: '10px 18px',
-                      boxShadow: E.shadowLg, border: `1px solid ${E.line}`,
-                      fontFamily: E.fontUi, fontSize: 13, fontWeight: 600, color: E.ink2,
-                      whiteSpace: 'nowrap', alignSelf: i % 2 ? 'flex-end' : 'flex-start',
-                    }}>{b}</div>
-                  ))}
-                </div>
-              </>
-            )}
           </div>
         </div>
       </div>

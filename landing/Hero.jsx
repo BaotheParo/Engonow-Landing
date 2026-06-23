@@ -82,9 +82,9 @@ function TopNav() {
 function Hero() {
   const mobile = useIsMobile(860);
   const checks = [
-    ['Lộ trình cá nhân hóa', 'cam kết đầu ra theo trình độ'],
-    ['Giáo viên 7.5+ IELTS, TESOL/CELTA', 'sửa bài 1-1 chi tiết'],
-    ['Hệ sinh thái LMS học tập 24/7', 'luyện nghe, chép chính tả mọi lúc'],
+    "✓ Giáo viên sở hữu 7.5+ IELTS · TESOL/CELTA",
+    "✓ Hệ sinh thái LMS học tập 24/7 study.engonow.com và dictation.engonow.com",
+    "✓ 4 cơ sở phủ sóng phía Tây Sài Gòn + Mạng lưới Online toàn quốc",
   ];
   return (
     <section id="top" style={{
@@ -106,26 +106,43 @@ function Hero() {
               fontSize: 'clamp(32px, 6.4vw, 52px)', lineHeight: 1.08, letterSpacing: '-0.025em',
               color: E.inkHead, margin: 0,
             }}>
-              Bứt phá <span style={{ color: E.red }}>IELTS&nbsp;7.0–8.0</span> nhanh hơn.
+              Bứt phá <span style={{ color: E.red }}>IELTS&nbsp;7.0–8.0</span> chỉ với một nửa thời gian
             </h1>
+
+            <div style={{
+              fontFamily: E.fontUi,
+              fontSize: mobile ? '18px' : '20px',
+              color: E.ink2,
+              marginTop: 16,
+              fontWeight: 500,
+              lineHeight: 1.4,
+              fontStyle: 'italic',
+            }}>
+              Đầu tư thông minh từ 1.500.000đ/tháng.
+            </div>
 
             {/* Fused trust tick list — benefit + proof */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 24 }}>
-              {checks.map(([t, s]) => (
-                <div key={t} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill={E.red} style={{ flexShrink: 0, marginTop: 1 }}><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.2l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
-                  <div style={{ lineHeight: 1.35 }}>
-                    <span style={{ fontFamily: E.fontUi, fontSize: 15, fontWeight: 700, color: E.ink }}>{t}</span>
-                    <span style={{ fontFamily: E.fontBody, fontSize: 14, color: E.ink3 }}> — {s}</span>
+              {checks.map((item) => {
+                const cleanText = item.replace(/^✓\s*/, '');
+                return (
+                  <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill={E.red} style={{ flexShrink: 0, marginTop: 1 }}><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.2l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+                    <div style={{ lineHeight: 1.35 }}>
+                      <span style={{ fontFamily: E.fontUi, fontSize: 15, fontWeight: 700, color: E.ink }}>{cleanText}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <div style={{ display: 'flex', gap: 12, marginTop: 30, flexWrap: 'wrap' }}>
               <Pill href="#final-cta" variant="primary" style={mobile ? { width: '100%' } : undefined}>
                 Nhận lộ trình MIỄN PHÍ
               </Pill>
+              <a href="https://zalo.me/0399994132" target="_blank" rel="noopener noreferrer" className="pill pill-ghost" style={mobile ? { width: '100%' } : undefined}>
+                Liên hệ qua Zalo
+              </a>
             </div>
           </div>
 
@@ -157,17 +174,6 @@ function HeroVisual({ mobile }) {
       <div style={{ position: 'relative' }}>
         <Slot id="hero-student" w="100%" h={mobile ? 300 : 430} radius={20} fit="contain"
           placeholder="Kéo ảnh học viên vào đây (áo đỏ, tai nghe, cầm tài liệu IELTS)" />
-      </div>
-
-      {/* Floating: Overall score */}
-      <div style={{
-        position: 'absolute', top: mobile ? 12 : 28, right: mobile ? 0 : -8, zIndex: 4,
-        background: '#fff', borderRadius: 14, padding: cardPad,
-        boxShadow: E.shadowXl, border: `1px solid ${E.line}`,
-      }}>
-        <div style={{ fontFamily: E.fontUi, fontSize: 10, fontWeight: 600, color: E.ink3 }}>Overall</div>
-        <div style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: numSize, color: E.ink, lineHeight: 1, margin: '2px 0' }}>7.5</div>
-        <div style={{ fontFamily: E.fontUi, fontSize: 10, fontWeight: 600, color: E.ink3 }}>IELTS Score</div>
       </div>
 
       {/* Floating: time saved */}
