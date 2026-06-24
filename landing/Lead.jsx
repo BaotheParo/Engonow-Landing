@@ -105,7 +105,7 @@ function LeadModal() {
         {!sent ? (
           <>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-              <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW" style={{ height: 30, width: 'auto', display: 'block' }} />
+              <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW" style={{ height: 30, width: 'auto', display: 'block', mixBlendMode: 'multiply' }} />
             </div>
             <h3 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 22, lineHeight: 1.18, letterSpacing: '-0.015em', color: E.inkHead, margin: '0 0 8px', paddingRight: 28 }}>{title}</h3>
             <p style={{ fontFamily: E.fontBody, fontSize: 14, lineHeight: 1.5, color: E.ink3, margin: '0 0 22px' }}>{subtitle}</p>

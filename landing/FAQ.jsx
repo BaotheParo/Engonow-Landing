@@ -63,7 +63,7 @@ function FinalCTA() {
         </div>
         <div style={{ display: 'flex', gap: 12, flexShrink: 0, width: mobile ? '100%' : 'auto', flexDirection: mobile ? 'column' : 'row' }}>
           <a href="#" data-lead="lms-trial" className="pill" style={{ background: '#fff', color: E.ink, padding: '15px 26px', fontSize: 14, justifyContent: 'center' }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill={E.red}><path d="M8 5v14l11-7z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill={E.red}><path d="M8 5v14l11-7z" /></svg>
             Học thử LMS 7 ngày miễn phí
           </a>
           <a href="#" data-lead="cta" className="pill" style={{ background: E.red700, color: '#fff', padding: '15px 26px', fontSize: 14, border: '1px solid rgba(255,255,255,0.3)', justifyContent: 'center' }}>
@@ -78,10 +78,11 @@ function FinalCTA() {
 function CampusMap() {
   const mobile = useIsMobile(820);
   const campuses = [
-    { tag: 'CN1 · Trụ sở chính', addr: '119 & 120 Phùng Tá Chu, An Lạc A, Bình Tân', pos: [10.7386, 106.6176], hq: true },
-    { tag: 'CN2 · Phương Nam', addr: '117 Hồ Văn Long, Tân Tạo, Bình Tân', pos: [10.7505, 106.5946] },
-    { tag: 'CN3 · Trí Việt', addr: '107 Đường Số 5, Bình Trị Đông B, Bình Tân', pos: [10.7588, 106.6082] },
-    { tag: 'CN4 · Sunwah', addr: '90 Nguyễn Hữu Cảnh, Phường 22, Bình Thạnh', pos: [10.7935, 106.7210] },
+    { tag: 'CN 1', addr: '119 & 120 Phùng Tá Chu, P. An Lạc A, TP.HCM', desc: 'Đào tạo gia sư chất lượng cao và hỗ trợ học viên cá nhân hóa.', pos: [10.7386, 106.6176], hq: true },
+    { tag: 'CN 2', addr: '117 Hồ Văn Long, P. Tân Tạo, TP.HCM', desc: 'Chi nhánh mở rộng phục vụ khu vực phía Nam với cơ sở vật chất hiện đại.', pos: [10.7505, 106.5946] },
+    { tag: 'CN 3', addr: '107 Đường Số 5, P. Bình Trị Đông B, TP.HCM', desc: 'Trung tâm đào tạo IELTS chuyên sâu với đội ngũ giảng viên chuẩn quốc tế.', pos: [10.7588, 106.6082] },
+    { tag: 'CN 4', addr: '90 Nguyễn Hữu Cảnh, P. 22, TP.HCM', desc: 'Hợp tác chiến lược với Tập đoàn Sunwah.', pos: [10.7935, 106.7210] },
+    { tag: 'CN 5', addr: '6 đường 1B, P. An Lạc, TP.HCM', desc: '', pos: [10.7314, 106.6105], upcoming: true, gmap: 'https://maps.app.goo.gl/HLPnfRPTpJWpsVvT7' },
   ];
   const elRef = React.useRef(null);
   const mapRef = React.useRef(null);
@@ -106,13 +107,15 @@ function CampusMap() {
       const pts = [];
       campuses.forEach((c, i) => {
         const m = L.marker(c.pos, { icon: pin(c.hq) }).addTo(map);
-        const gmap = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.addr + ', TP.HCM')}`;
+        const gmap = c.gmap || `https://www.google.com/maps/dir/?api=1&destination=${c.pos[0]},${c.pos[1]}`;
         m.bindPopup(`<div style="font-family:Montserrat,sans-serif;min-width:170px"><strong style="color:#BA3638">${c.tag}</strong><br><span style="font-size:12px;color:#4A4A4A">${c.addr}</span><br><a href="${gmap}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12px;font-weight:700;color:#2C6FB5;text-decoration:none">➜ Chỉ đường Google Maps</a></div>`);
         m.on('click', () => setActive(i));
         markersRef.current[i] = m;
         pts.push(c.pos);
       });
-      map.fitBounds(pts, { padding: [50, 50] });
+      if (pts.length > 0) {
+        map.fitBounds(pts, { padding: [50, 50] });
+      }
       setTimeout(() => { if (!cancelled && mapRef.current) mapRef.current.invalidateSize(); }, 300);
     }
     // wait for Leaflet to be available
@@ -135,46 +138,48 @@ function CampusMap() {
       {/* Campus list */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {campuses.map((c, i) => {
-          const gmap = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.addr + ', TP.HCM')}`;
+          const gmap = c.gmap || `https://www.google.com/maps/dir/?api=1&destination=${c.pos[0]},${c.pos[1]}`;
           return (
-          <div key={c.tag} onClick={() => focus(i)} style={{
-            textAlign: 'left', cursor: 'pointer',
-            background: active === i ? E.redSoft : '#fff',
-            border: `1px solid ${active === i ? E.red : E.line}`,
-            borderRadius: 14, padding: '14px 16px',
-            display: 'flex', gap: 12, alignItems: 'flex-start',
-            transition: 'background 180ms ease, border-color 180ms ease',
-          }}>
-            <span style={{
-              width: 30, height: 30, borderRadius: 999, flexShrink: 0,
-              background: active === i ? E.red : E.redSoft,
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            <div key={c.tag} onClick={() => focus(i)} style={{
+              textAlign: 'left', cursor: 'pointer',
+              background: active === i ? E.redSoft : '#fff',
+              border: `1px solid ${active === i ? E.red : E.line}`,
+              borderRadius: 14, padding: '14px 16px',
+              display: 'flex', gap: 12, alignItems: 'flex-start',
+              transition: 'background 180ms ease, border-color 180ms ease',
             }}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={active === i ? '#fff' : E.red} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-              </svg>
-            </span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontFamily: E.fontUi, fontSize: 12.5, fontWeight: 700, color: E.red }}>{c.tag}</span>
-                {c.hq && <span style={{ fontFamily: E.fontUi, fontSize: 9, fontWeight: 700, color: '#fff', background: E.gold, padding: '2px 6px', borderRadius: 4, letterSpacing: '0.06em' }}>HQ</span>}
-              </div>
-              <div style={{ fontFamily: E.fontBody, fontSize: 13, lineHeight: 1.45, color: E.ink2, marginTop: 4 }}>{c.addr}</div>
-              <a href={gmap} target="_blank" rel="noopener" onClick={e => e.stopPropagation()} style={{
-                display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 8,
-                fontFamily: E.fontUi, fontSize: 12, fontWeight: 700, color: E.blue,
+              <span style={{
+                width: 30, height: 30, borderRadius: 999, flexShrink: 0,
+                background: active === i ? E.red : E.redSoft,
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={E.blue} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                Chỉ đường Google Maps
-              </a>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={active === i ? '#fff' : E.red} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+                </svg>
+              </span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ fontFamily: E.fontUi, fontSize: 12.5, fontWeight: 700, color: E.red }}>{c.tag}</span>
+                  {c.hq && <span style={{ fontFamily: E.fontUi, fontSize: 9, fontWeight: 700, color: '#fff', background: E.gold, padding: '2px 6px', borderRadius: 4, letterSpacing: '0.06em' }}>HQ</span>}
+                  {c.upcoming && <span style={{ fontFamily: E.fontUi, fontSize: 9, fontWeight: 700, color: '#fff', background: E.blue, padding: '2px 6px', borderRadius: 4, letterSpacing: '0.06em' }}>UPCOMING</span>}
+                </div>
+                <div style={{ fontFamily: E.fontBody, fontSize: 13, lineHeight: 1.45, color: E.ink2, marginTop: 4 }}>{c.addr}</div>
+                {c.desc && <div style={{ fontFamily: E.fontBody, fontSize: 12, lineHeight: 1.4, color: E.ink3, marginTop: 4, fontStyle: 'italic' }}>{c.desc}</div>}
+                <a href={gmap} target="_blank" rel="noopener" onClick={e => e.stopPropagation()} style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 8,
+                  fontFamily: E.fontUi, fontSize: 12, fontWeight: 700, color: E.blue,
+                }}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={E.blue} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11" /></svg>
+                  Chỉ đường Google Maps
+                </a>
+              </div>
             </div>
-          </div>
           );
         })}
       </div>
 
       {/* Map */}
-      <div ref={elRef} style={{ height: mobile ? 280 : 360, borderRadius: 18, border: `1px solid ${E.line}`, overflow: 'hidden', background: E.surfaceAlt, order: mobile ? -1 : 0 }}></div>
+      <div ref={elRef} style={{ height: mobile ? 280 : 600, borderRadius: 18, border: `1px solid ${E.line}`, overflow: 'hidden', background: E.surfaceAlt, order: mobile ? -1 : 0 }}></div>
     </div>
   );
 }
@@ -188,7 +193,7 @@ function Footer() {
             Hệ thống cơ sở
           </div>
           <h2 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 'clamp(22px,3.2vw,28px)', color: E.inkHead, margin: 0, letterSpacing: '-0.02em' }}>
-            4 cơ sở phía Tây Sài Gòn &amp; học Online toàn quốc
+            5 cơ sở phía Tây Sài Gòn &amp; học Online toàn quốc
           </h2>
         </div>
 
@@ -200,13 +205,13 @@ function Footer() {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap' }}>
-            <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW" style={{ height: 38, width: 'auto', display: 'block' }} />
+            <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW" style={{ height: 100, width: 'auto', display: 'block', mixBlendMode: 'multiply' }} />
             <span style={{ fontFamily: E.fontBody, fontSize: 13, color: E.ink3 }}>© 2026 ENGONOW IELTS Master · Bình Tân, TP.HCM</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
             <a href="tel:0399994132" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: E.fontUi, fontSize: 14, fontWeight: 700, color: E.ink }}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={E.red} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
               039.999.4132
             </a>

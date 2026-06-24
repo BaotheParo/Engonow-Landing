@@ -172,12 +172,12 @@ function RedDot({ size = 8 }) {
 }
 
 // Engonow logo — real brand lockup (open-book + gold pages, serif red wordmark)
-function EngonowMark({ height = 42, label = 'IELTS MASTER', labelColor }) {
+function EngonowMark({ height = 42, label = 'IELTS MASTER', labelColor, imgStyle }) {
   const lc = labelColor || E.red;
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
       <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW — Enlighten Your Goal Now"
-        style={{ height, width: 'auto', display: 'block' }} />
+        style={{ height, width: 'auto', display: 'block', mixBlendMode: 'multiply', ...imgStyle }} />
       {label && (
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 12 }}>
           <span style={{ width: 1, height: height * 0.6, background: E.lineStrong, display: 'inline-block' }}></span>

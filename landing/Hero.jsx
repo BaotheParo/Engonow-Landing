@@ -24,10 +24,10 @@ function TopNav() {
       padding: '0 clamp(20px, 5vw, 48px)',
     }}>
       <div className="container" style={{
-        height: 72, display: 'flex', alignItems: 'center', gap: 20,
+        height: mobile ? 72 : 96, display: 'flex', alignItems: 'center', gap: 20,
       }}>
-        <a href="#top" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-          <EngonowMark height={mobile ? 34 : 40} label={null} />
+        <a href="#top" style={{ display: 'flex', alignItems: 'center', flexShrink: 0, overflow: 'hidden' }}>
+          <EngonowMark height={mobile ? 90 : 140} label={null} imgStyle={{ margin: mobile ? '-25px 0' : '-45px 0' }} />
         </a>
 
         {!mobile && (
