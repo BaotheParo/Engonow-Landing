@@ -78,11 +78,11 @@ function FinalCTA() {
 function CampusMap() {
   const mobile = useIsMobile(820);
   const campuses = [
-    { tag: 'CN 1', addr: '119 & 120 Phùng Tá Chu, P. An Lạc A, TP.HCM', desc: 'Đào tạo gia sư chất lượng cao và hỗ trợ học viên cá nhân hóa.', pos: [10.7386, 106.6176], hq: true },
-    { tag: 'CN 2', addr: '117 Hồ Văn Long, P. Tân Tạo, TP.HCM', desc: 'Chi nhánh mở rộng phục vụ khu vực phía Nam với cơ sở vật chất hiện đại.', pos: [10.7505, 106.5946] },
-    { tag: 'CN 3', addr: '107 Đường Số 5, P. Bình Trị Đông B, TP.HCM', desc: 'Trung tâm đào tạo IELTS chuyên sâu với đội ngũ giảng viên chuẩn quốc tế.', pos: [10.7588, 106.6082] },
-    { tag: 'CN 4', addr: '90 Nguyễn Hữu Cảnh, P. 22, TP.HCM', desc: 'Hợp tác chiến lược với Tập đoàn Sunwah.', pos: [10.7935, 106.7210] },
-    { tag: 'CN 5', addr: '6 đường 1B, P. An Lạc, TP.HCM', desc: '', pos: [10.7314, 106.6105], upcoming: true, gmap: 'https://maps.app.goo.gl/HLPnfRPTpJWpsVvT7' },
+    { tag: 'CHI NHÁNH 1', addr: '119 & 120 Phùng Tá Chu, P. An Lạc A, TP.HCM', desc: 'Đào tạo gia sư chất lượng cao và hỗ trợ học viên cá nhân hóa.', pos: [10.7537997, 106.6199272], hq: true, gmap: 'https://maps.app.goo.gl/YJgiJ3sjKQZQYRAs7' },
+    { tag: 'CHI NHÁNH 2', addr: '117 Hồ Văn Long, P. Tân Tạo, TP.HCM', desc: 'Chi nhánh mở rộng phục vụ khu vực phía Nam với cơ sở vật chất hiện đại.', pos: [10.7623131, 106.5834299], gmap: 'https://maps.app.goo.gl/aFidBbogpZBzZfYX7' },
+    { tag: 'CHI NHÁNH 3', addr: '107 Đường Số 5, P. Bình Trị Đông B, TP.HCM', desc: 'Trung tâm đào tạo IELTS chuyên sâu với đội ngũ giảng viên chuẩn quốc tế.', pos: [10.7501097, 106.6156021], gmap: 'https://maps.app.goo.gl/pjerhtndEzE4RJ2T7' },
+    { tag: 'CHI NHÁNH 4', addr: '90 Nguyễn Hữu Cảnh, P. 22, TP.HCM', desc: 'Hợp tác chiến lược với Tập đoàn Sunwah.', pos: [10.7886729, 106.7155131], gmap: 'https://maps.app.goo.gl/Q2rYvWZ65M5FFgLZ6' },
+    { tag: 'CHI NHÁNH 5', addr: '6 đường 1B, P. An Lạc, TP.HCM', desc: '', pos: [10.7476357, 106.6175955], upcoming: true, gmap: 'https://maps.app.goo.gl/egmWGrdHxtnDfKYL7' },
   ];
   const elRef = React.useRef(null);
   const mapRef = React.useRef(null);

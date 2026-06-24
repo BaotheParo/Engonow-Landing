@@ -35,10 +35,10 @@ function ProblemSection() {
               onMouseLeave={() => setHovered(false)}
               style={{
                 padding: '18px 20px', background: '#fff', color: E.ink,
-                borderRadius: 14, border: `1px solid ${E.redTint}`,
+                borderRadius: 14, border: `1px solid ${hovered ? E.red : E.redTint}`,
                 boxShadow: hovered ? E.shadowLg : E.shadowSm,
                 transform: hovered ? 'translateY(-6px) scale(1.02)' : 'none',
-                transition: 'transform 250ms ease, box-shadow 250ms ease',
+                transition: 'transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
@@ -83,7 +83,7 @@ function ProblemSection() {
 // ============= FRAMEWORK — pale blue method band =============
 function WhyFast() {
   const mobile = useIsMobile(760);
-  const [activeIcon, setActiveIcon] = React.useState(0);
+  const [activeIcon, setActiveIcon] = React.useState(null);
 
   const deepBlueFilter = 'brightness(0) saturate(100%) invert(11%) sepia(97%) saturate(6669%) hue-rotate(248deg) brightness(85%) contrast(105%)';
 

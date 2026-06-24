@@ -37,9 +37,18 @@ function LeadModal() {
 
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
-    if (open) { document.addEventListener('keydown', onKey); document.body.style.overflow = 'hidden'; }
-    else { document.body.style.overflow = ''; }
-    return () => document.removeEventListener('keydown', onKey);
+    if (open) {
+      document.addEventListener('keydown', onKey);
+      document.body.style.overflow = 'hidden';
+      document.body.classList.add('lead-modal-open');
+    } else {
+      document.body.style.overflow = '';
+      document.body.classList.remove('lead-modal-open');
+    }
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.classList.remove('lead-modal-open');
+    };
   }, [open]);
 
   if (!open) return null;
@@ -81,7 +90,7 @@ function LeadModal() {
     <div
       onMouseDown={e => { if (e.target === e.currentTarget) setOpen(false); }}
       style={{
-        position: 'fixed', inset: 0, zIndex: 100,
+        position: 'fixed', inset: 0, zIndex: 2000,
         background: 'rgba(28,20,14,0.55)', backdropFilter: 'blur(4px)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: mobile ? 16 : 24,
@@ -101,11 +110,11 @@ function LeadModal() {
         }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={E.ink2} strokeWidth="2.4" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
-
+ 
         {!sent ? (
           <>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-              <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW" style={{ height: 30, width: 'auto', display: 'block', mixBlendMode: 'multiply' }} />
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 14, overflow: 'hidden', height: 50 }}>
+              <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW" style={{ height: 100, width: 'auto', display: 'block', mixBlendMode: 'multiply', margin: '-25px 0' }} />
             </div>
             <h3 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 22, lineHeight: 1.18, letterSpacing: '-0.015em', color: E.inkHead, margin: '0 0 8px', paddingRight: 28 }}>{title}</h3>
             <p style={{ fontFamily: E.fontBody, fontSize: 14, lineHeight: 1.5, color: E.ink3, margin: '0 0 22px' }}>{subtitle}</p>

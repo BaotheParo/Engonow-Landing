@@ -17,7 +17,7 @@ function TopNav() {
 
   return (
     <header style={{
-      position: 'sticky', top: 0, zIndex: 50,
+      position: 'sticky', top: 0, zIndex: 1100,
       background: 'rgba(255,255,255,0.95)',
       backdropFilter: 'saturate(180%) blur(10px)',
       borderBottom: `1px solid ${E.line}`,
