@@ -4,9 +4,21 @@
 function TeachersSection() {
   const mobile = useIsMobile(760);
   const devotions = [
-    { icon: 'edit', title: 'Sửa Writing 1-1 chi tiết', body: 'Mổ xẻ theo 4 tiêu chí, chấm dứt điểm số khô khan' },
-    { icon: 'heart-health-muscle', title: 'Speaking 1-1 mỗi tuần', body: 'Luyện nói 1-1 cho đến khi thực sự tự tin' },
-    { icon: 'envelope', title: 'Chủ động liên hệ khi cần', body: 'Giáo viên chủ động theo sát và hỗ trợ kịp thời' },
+    { 
+      icon: 'edit', 
+      title: 'Sửa Writing 1-1 chuyên sâu', 
+      body: 'Phân tích chi tiết theo 4 tiêu chí chuẩn. Không trả điểm khô khan mà không kèm định hướng.' 
+    },
+    { 
+      icon: 'heart-health-muscle', 
+      title: 'Thực chiến Speaking 1-1', 
+      body: 'Luyện tập trực tiếp (Online & Offline) hàng tuần. Rèn phản xạ và chuẩn hóa phát âm đến khi làm chủ phòng thi.' 
+    },
+    { 
+      icon: 'envelope', 
+      title: 'Chăm sóc học vụ chủ động', 
+      body: 'Theo sát tiến độ học tập. Hỗ trợ lập tức khi vắng mặt, nộp bài trễ hoặc có dấu hiệu chững band.' 
+    },
   ];
   const teachers = [
     { name: 'Thầy Huỳnh Thế Mạnh', band: '8.0', slot: 'teacher-1' },
@@ -15,11 +27,23 @@ function TeachersSection() {
     { name: 'Cô Felicia Phạm', band: '8.5', slot: 'teacher-4' },
   ];
   return (
-    <section id="teachers" className="section" style={{ background: E.greyPanel, borderTop: `1px solid ${E.greyLine}` }}>
+    <section id="teachers" className="section" style={{ background: '#EDF6FF', borderTop: `1px solid ${E.greyLine}` }}>
       <div className="container">
         <h2 style={{ textAlign: 'center', fontFamily: E.fontHead, fontWeight: 800, fontSize: 'clamp(24px,3.4vw,32px)', color: E.inkHead, margin: '0 0 36px', letterSpacing: '-0.02em' }}>
-          Đội ngũ giáo viên tận tâm – Chuyên môn vững vàng
+          Đội ngũ giáo viên chuyên môn vững vàng – Tận tâm đến từng buổi học
         </h2>
+
+        <p style={{ 
+          textAlign: 'center', 
+          fontFamily: E.fontBody, 
+          fontSize: mobile ? 14 : 16, 
+          lineHeight: 1.6, 
+          color: E.ink2, 
+          maxWidth: 680, 
+          margin: '-24px auto 36px' 
+        }}>
+          Đội ngũ giảng dạy sở hữu IELTS 7.5+ cùng chứng chỉ sư phạm quốc tế TESOL/CELTA. Kết hợp cùng quy trình theo sát khắt khe, đảm bảo sự tiến bộ liên tục và cam kết không một ai bị bỏ lại phía sau.
+        </p>
 
         {/* 3 inline devotions */}
         <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)', gap: 0, marginBottom: 36 }}>

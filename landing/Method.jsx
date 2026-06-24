@@ -281,20 +281,77 @@ function WhyFast() {
 // ============= RESULTS — spotlight carousel (white) =============
 function ResultsSection() {
   const mobile = useIsMobile(760);
+  const [val1, setVal1] = React.useState(0);
+  const [val2, setVal2] = React.useState(0);
+  const [val3, setVal3] = React.useState(0);
+  const [linkHover, setLinkHover] = React.useState(false);
+  const sectionRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        const duration = 1500; // 1.5s
+        const steps = 60; // 60fps
+        const stepTime = duration / steps;
+        let currentStep = 0;
+
+        const timer = setInterval(() => {
+          currentStep++;
+          const progress = currentStep / steps;
+          const easeOutQuad = progress * (2 - progress);
+
+          setVal1(Math.floor(easeOutQuad * 5000));
+          setVal2(Math.floor(easeOutQuad * 300));
+          setVal3(Math.floor(easeOutQuad * 99));
+
+          if (currentStep >= steps) {
+            clearInterval(timer);
+            setVal1(5000);
+            setVal2(300);
+            setVal3(99);
+          }
+        }, stepTime);
+
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const formatNumber = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
+
   const winners = [
     {
-      slot: 'result-1', name: 'ĐOÀN MINH NHẬT', school: 'THPT Bình Phú', band: '7.5',
-      quote: 'Em học IELTS với nhiều lớp nhưng vẫn không tự tin. Thầy cô EngoNow không chỉ dạy kiến thức mà còn truyền động lực để em kiên trì mỗi ngày. Kết quả 7.5 là minh chứng cho sự nỗ lực và phương pháp đúng đắn!'
+      slot: 'result-3',
+      name: 'LÊ ANH THƯ',
+      subtitle: 'OVERALL 7.5 | THPT MẠC ĐĨNH CHI',
+      band: '7.5',
+      quote: 'Từng loay hoay tự học và bế tắc khi Writing, Speaking thiếu ý tưởng, còn Reading, Listening chưa tiếp cận đúng phương pháp. Nhờ phương pháp M.E.E.R. tại Engonow, tư duy được hệ thống lại, khung ý trở nên rõ ràng và khả năng nắm bắt thông tin cải thiện vượt bậc. Kết quả IELTS 7.5 ngay lần thi đầu tiên là minh chứng sắc nét cho một lộ trình đúng đắn đi cùng sự kiên trì.'
     },
     {
-      slot: 'result-2', name: 'LÊ PHAN GIA BẢO', school: 'THPT Bình Phú', band: '8.0',
-      quote: 'EngoNow giúp em cải thiện toàn diện 4 kỹ năng. Các thầy cô sửa bài chi tiết, tận tâm và theo sát kèm đến từng buổi. 8.0 IELTS — vượt ngoài mong đợi của bản thân!'
+      slot: 'result-1',
+      name: 'ĐOÀN MINH NHẬT',
+      subtitle: 'OVERALL 7.5 | THPT BÌNH PHÚ',
+      band: '7.5',
+      quote: 'Ban đầu, mục tiêu học IELTS chỉ để đạt chứng chỉ do tâm lý FOMO. Tuy nhiên, quá trình rèn luyện tại Engonow đã giúp làm chủ ngôn ngữ, mở rộng tư duy và gia tăng lựa chọn trong cuộc sống. Mức điểm IELTS 7.5 không chỉ là một kết quả học thuật, mà còn đánh dấu sự trưởng thành trong nhận thức để chủ động định hướng tương lai.'
     },
     {
-      slot: 'result-3', name: 'LÊ ÁNH THƯ', school: 'THPT Mạc Đĩnh Chi', band: '7.5',
-      quote: 'Môi trường học thân thiện, lịch học linh hoạt giúp em cân bằng việc học ở trường và ôn IELTS. Cảm ơn EngoNow và các thầy cô rất nhiều!'
+      slot: 'result-2',
+      name: 'LÊ PHAN GIA BẢO',
+      subtitle: 'OVERALL 8.0 | THPT BÌNH PHÚ',
+      band: '8.0',
+      quote: 'Từng mắc kẹt trong sự trì hoãn, dù có nền tảng từ vựng nhưng vẫn \'chững band\' do thiếu phương pháp và kỷ luật. Nhờ được định hướng lại cách tiếp cận ngôn ngữ một cách hệ thống tại Engonow, mọi giới hạn đã được phá vỡ. Kết quả IELTS 8.0 không chỉ là thành tích xuất sắc, mà còn là minh chứng vững chắc cho sự thay đổi toàn diện trong tư duy và tính kỷ luật.'
     },
   ];
+
   const [idx, setIdx] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
   const n = winners.length;
@@ -302,7 +359,7 @@ function ResultsSection() {
 
   React.useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => setIdx(i => (i + 1) % n), 6000);
+    const t = setInterval(() => setIdx(i => (i + 1) % n), 3000);
     return () => clearInterval(t);
   }, [paused, n]);
 
@@ -339,11 +396,11 @@ function ResultsSection() {
   );
 
   return (
-    <section id="results" className="section" style={{ background: '#fff' }}>
+    <section ref={sectionRef} id="results" className="section" style={{ background: '#fff' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
           <h2 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 'clamp(24px,3.4vw,32px)', color: E.inkHead, margin: 0, letterSpacing: '-0.02em' }}>
-            Học thật – Thi thật – Kết quả thật
+            Hơn 5.000 học viên đã chinh phục mục tiêu học Tiếng Anh
           </h2>
         </div>
 
@@ -354,9 +411,9 @@ function ResultsSection() {
           display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
         }}>
           {[
-            ['5.000+', 'Lượt học viên'],
-            ['300+', 'Khóa học thành công'],
-            ['99%', 'Đánh giá tích cực'],
+            [`${formatNumber(val1)}+`, 'Lượt học viên'],
+            [`${val2}+`, 'Khóa học thành công'],
+            [`${val3}%`, 'Đánh giá tích cực'],
           ].map(([num, label], i) => (
             <div key={label} style={{
               textAlign: 'center', padding: mobile ? '16px 8px' : '22px 16px',
@@ -409,7 +466,7 @@ function ResultsSection() {
                       </div>
                       <p style={{ fontFamily: E.fontBody, fontSize: mobile ? 15 : 17, lineHeight: 1.6, color: E.ink, margin: '0 0 18px', fontStyle: 'italic' }}>"{w.quote}"</p>
                       <div style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 17, color: E.inkHead, letterSpacing: '-0.01em' }}>{w.name}</div>
-                      <div style={{ fontFamily: E.fontUi, fontSize: 13, color: E.ink3, marginTop: 2 }}>{w.school} · Học viên ENGONOW</div>
+                      <div style={{ fontFamily: E.fontUi, fontSize: 13, color: E.ink3, marginTop: 2 }}>{w.subtitle}</div>
                     </div>
                   </div>
                 </div>
@@ -425,10 +482,42 @@ function ResultsSection() {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: 28 }}>
-          <a href="https://engonow.com/gioi-thieu/bang-vang-thanh-tich-engonow/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: E.fontUi, fontSize: 14, fontWeight: 700, color: E.red }}>
-            Xem thêm 300+ câu chuyện
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+        <div style={{ textAlign: 'center', marginTop: 32 }}>
+          <a
+            href="https://engonow.com/gioi-thieu/bang-vang-thanh-tich-engonow/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => setLinkHover(true)}
+            onMouseLeave={() => setLinkHover(false)}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              fontFamily: E.fontUi,
+              fontSize: mobile ? 13.5 : 14.5,
+              fontWeight: 700,
+              color: linkHover ? '#fff' : E.red,
+              textDecoration: 'none',
+              padding: '12px 28px',
+              borderRadius: 30,
+              background: linkHover ? E.red : 'rgba(238, 77, 45, 0.03)',
+              border: `1.5px solid ${E.red}`,
+              boxShadow: linkHover ? '0 4px 14px rgba(238, 77, 45, 0.25)' : 'none',
+              transform: linkHover ? 'translateY(-2px)' : 'none',
+              transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)',
+              cursor: 'pointer'
+            }}
+          >
+            <span style={{ 
+              transform: linkHover ? 'translateX(4px)' : 'none', 
+              transition: 'transform 200ms ease',
+              display: 'inline-block'
+            }}>
+              —&gt;
+            </span>
+            <span>
+              Xem thêm 100+ câu chuyện thành công
+            </span>
           </a>
         </div>
       </div>
