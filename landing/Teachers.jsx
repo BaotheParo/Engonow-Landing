@@ -2,24 +2,48 @@
 // Sec 7: Pricing band
 
 function TeachersSection() {
-  const mobile = useIsMobile(760);
+  const mobile = useIsMobile(860);
   const devotions = [
-    { icon: 'edit', title: 'Sửa Writing 1-1 chi tiết', body: 'Mổ xẻ theo 4 tiêu chí, chấm dứt điểm số khô khan' },
-    { icon: 'heart-health-muscle', title: 'Speaking 1-1 mỗi tuần', body: 'Luyện nói 1-1 cho đến khi thực sự tự tin' },
-    { icon: 'envelope', title: 'Chủ động liên hệ khi cần', body: 'Giáo viên chủ động theo sát và hỗ trợ kịp thời' },
+    { 
+      icon: 'edit', 
+      title: 'Sửa Writing 1-1 chuyên sâu', 
+      body: 'Phân tích chi tiết theo 4 tiêu chí chuẩn. Không trả điểm khô khan mà không kèm định hướng.' 
+    },
+    { 
+      icon: 'heart-health-muscle', 
+      title: 'Thực chiến Speaking 1-1', 
+      body: 'Luyện tập trực tiếp (Online & Offline) hàng tuần. Rèn phản xạ và chuẩn hóa phát âm đến khi làm chủ phòng thi.' 
+    },
+    { 
+      icon: 'envelope', 
+      title: 'Chăm sóc học vụ chủ động', 
+      body: 'Theo sát tiến độ học tập. Hỗ trợ lập tức khi vắng mặt, nộp bài trễ hoặc có dấu hiệu chững band.' 
+    },
   ];
   const teachers = [
-    { name: 'Thầy Huỳnh Thế Mạnh', band: '8.0', slot: 'teacher-1' },
-    { name: 'Thầy Trần Anh Kha',   band: '8.0', slot: 'teacher-2' },
-    { name: 'Thầy Trần Bạch Đằng', band: '8.0', slot: 'teacher-3' },
-    { name: 'Cô Felicia Phạm', band: '8.5', slot: 'teacher-4' },
+    { name: 'Thầy Huỳnh Thế Mạnh', band: '8.0', slot: 'teacher-1', src: 'teacher-manh.jpg' },
+    { name: 'Thầy Trần Anh Kha',   band: '8.0', slot: 'teacher-2', src: 'teacher-kha.jpg' },
+    { name: 'Thầy Trần Bạch Đằng', band: '8.0', slot: 'teacher-3', src: 'teacher-dang.jpg' },
+    { name: 'Cô Felicia Phạm', band: '8.5', slot: 'teacher-4', src: 'teacher-felicia.jpg' },
   ];
   return (
-    <section id="teachers" className="section" style={{ background: E.greyPanel, borderTop: `1px solid ${E.greyLine}` }}>
+    <section id="teachers" className="section" style={{ background: '#EDF6FF', borderTop: `1px solid ${E.greyLine}` }}>
       <div className="container">
         <h2 style={{ textAlign: 'center', fontFamily: E.fontHead, fontWeight: 800, fontSize: 'clamp(24px,3.4vw,32px)', color: E.inkHead, margin: '0 0 36px', letterSpacing: '-0.02em' }}>
-          Đội ngũ giáo viên tận tâm – Chuyên môn vững vàng
+          Đội ngũ giáo viên chuyên môn vững vàng – Tận tâm đến từng buổi học
         </h2>
+
+        <p style={{ 
+          textAlign: 'center', 
+          fontFamily: E.fontBody, 
+          fontSize: mobile ? 14 : 16, 
+          lineHeight: 1.6, 
+          color: E.ink2, 
+          maxWidth: 680, 
+          margin: '-24px auto 36px' 
+        }}>
+          Đội ngũ giảng dạy sở hữu IELTS 7.5+ cùng chứng chỉ sư phạm quốc tế TESOL/CELTA. Kết hợp cùng quy trình theo sát khắt khe, đảm bảo sự tiến bộ liên tục và cam kết không một ai bị bỏ lại phía sau.
+        </p>
 
         {/* 3 inline devotions */}
         <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)', gap: 0, marginBottom: 36 }}>
@@ -42,30 +66,31 @@ function TeachersSection() {
 
         {/* 4 teacher cards */}
         <div style={{ display: 'grid', gridTemplateColumns: mobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: mobile ? 12 : 18 }}>
-          {teachers.map(t => <TeacherCard key={t.slot} t={t} />)}
+          {teachers.map(t => <TeacherCard key={t.slot} t={t} mobile={mobile} />)}
         </div>
       </div>
     </section>
   );
 }
 
-function TeacherCard({ t }) {
+function TeacherCard({ t, mobile }) {
   const [hover, setHover] = React.useState(false);
   return (
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
-        background: '#fff', borderRadius: 16, padding: 14,
+        background: '#fff', borderRadius: 16, padding: mobile ? 16 : 14,
         border: `1px solid ${hover ? E.red : E.line}`,
         boxShadow: hover ? E.shadowLg : E.shadowSm,
         transform: hover ? 'translateY(-4px)' : 'none',
         transition: 'transform 220ms cubic-bezier(0.4,0,0.2,1), box-shadow 220ms ease, border-color 220ms ease',
-        display: 'flex', gap: 14, alignItems: 'center', cursor: 'default',
+        display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: mobile ? 14 : 14,
+        alignItems: 'center', textAlign: mobile ? 'center' : 'left', cursor: 'default',
       }}
     >
       <div style={{ position: 'relative', flexShrink: 0 }}>
-        <Slot id={t.slot} w={72} h={84} radius={10} placeholder="Ảnh GV" />
+        <Slot id={t.slot} src={t.src} w={mobile ? 84 : 72} h={mobile ? 98 : 84} radius={10} placeholder="Ảnh GV" />
         <span style={{
           position: 'absolute', bottom: -6, left: '50%', transform: 'translateX(-50%)',
           fontFamily: E.fontUi, fontSize: 9.5, fontWeight: 700, color: '#fff', background: E.red,
@@ -74,10 +99,7 @@ function TeacherCard({ t }) {
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontFamily: E.fontHead, fontWeight: 700, fontSize: 14.5, color: hover ? E.red : E.inkHead, lineHeight: 1.25, letterSpacing: '-0.01em', transition: 'color 200ms ease' }}>{t.name}</div>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={E.red} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span style={{ fontFamily: E.fontUi, fontSize: 11.5, fontWeight: 600, color: E.ink3 }}>TESOL · IELTS {t.band}</span>
-        </div>
+        <div style={{ fontFamily: E.fontUi, fontSize: 11.5, fontWeight: 600, color: E.ink3, marginTop: mobile ? 6 : 8, letterSpacing: '0.02em' }}>TESOL · IELTS {t.band}</div>
       </div>
     </div>
   );

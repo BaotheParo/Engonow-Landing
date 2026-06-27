@@ -37,9 +37,18 @@ function LeadModal() {
 
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
-    if (open) { document.addEventListener('keydown', onKey); document.body.style.overflow = 'hidden'; }
-    else { document.body.style.overflow = ''; }
-    return () => document.removeEventListener('keydown', onKey);
+    if (open) {
+      document.addEventListener('keydown', onKey);
+      document.body.style.overflow = 'hidden';
+      document.body.classList.add('lead-modal-open');
+    } else {
+      document.body.style.overflow = '';
+      document.body.classList.remove('lead-modal-open');
+    }
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.classList.remove('lead-modal-open');
+    };
   }, [open]);
 
   if (!open) return null;
@@ -81,7 +90,7 @@ function LeadModal() {
     <div
       onMouseDown={e => { if (e.target === e.currentTarget) setOpen(false); }}
       style={{
-        position: 'fixed', inset: 0, zIndex: 100,
+        position: 'fixed', inset: 0, zIndex: 2000,
         background: 'rgba(28,20,14,0.55)', backdropFilter: 'blur(4px)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: mobile ? 16 : 24,
@@ -95,17 +104,15 @@ function LeadModal() {
       }}>
         {/* Close */}
         <button onClick={() => setOpen(false)} aria-label="Đóng" style={{
-          position: 'absolute', top: 16, right: 16, width: 34, height: 34, borderRadius: 999,
+          position: 'absolute', top: 16, right: 16, height: 34, padding: '0 14px', borderRadius: 999,
           background: E.surfaceAlt, border: `1px solid ${E.line}`, cursor: 'pointer',
-          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-        }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={E.ink2} strokeWidth="2.4" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-
+          color: E.ink2, fontFamily: E.fontUi, fontSize: 12.5, fontWeight: 700,
+        }}>Đóng</button>
+ 
         {!sent ? (
           <>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-              <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW" style={{ height: 30, width: 'auto', display: 'block' }} />
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 14, overflow: 'hidden', height: 50 }}>
+              <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW" style={{ height: 100, width: 'auto', display: 'block', mixBlendMode: 'multiply', margin: '-25px 0' }} />
             </div>
             <h3 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 22, lineHeight: 1.18, letterSpacing: '-0.015em', color: E.inkHead, margin: '0 0 8px', paddingRight: 28 }}>{title}</h3>
             <p style={{ fontFamily: E.fontBody, fontSize: 14, lineHeight: 1.5, color: E.ink3, margin: '0 0 22px' }}>{subtitle}</p>
@@ -130,16 +137,15 @@ function LeadModal() {
               <button type="submit" className="pill pill-primary" style={{ width: '100%', marginTop: 4, padding: '15px 28px' }}>
                 Gửi thông tin — Nhận tư vấn MIỄN PHÍ
               </button>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontFamily: E.fontUi, fontSize: 12.5, color: E.ink3 }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={E.ink3} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <div style={{ textAlign: 'center', fontFamily: E.fontUi, fontSize: 12.5, color: E.ink3 }}>
                 Thông tin của bạn được bảo mật tuyệt đối
               </div>
             </form>
           </>
         ) : (
           <div style={{ textAlign: 'center', padding: '12px 0 4px' }}>
-            <div style={{ width: 64, height: 64, borderRadius: 999, background: '#E7F4EC', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={E.green} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div style={{ display: 'inline-block', background: E.redSoft, color: E.red, fontFamily: E.fontUi, fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '8px 16px', borderRadius: 999, marginBottom: 18 }}>
+              Hoàn tất
             </div>
             <h3 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 22, color: E.inkHead, margin: '0 0 10px', letterSpacing: '-0.015em' }}>Đã nhận thông tin của bạn!</h3>
             <p style={{ fontFamily: E.fontBody, fontSize: 14.5, lineHeight: 1.55, color: E.ink2, margin: '0 0 22px' }}>

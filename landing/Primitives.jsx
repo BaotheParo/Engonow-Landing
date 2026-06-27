@@ -6,53 +6,61 @@ function R(id, fallback) {
   return (typeof window !== 'undefined' && window.__resources && window.__resources[id]) || fallback;
 }
 
+// Team brand palette (BẢNG MÀU): red #CB0000, deep blue #1D00B7, grey #F7F7F7,
+// light blue #EDF6FF. Momentum layout kept; only the colors are re-pointed to brand.
+// Legacy accent keys (gold/blue/slate/green/coral/steam/cream) map onto the brand set.
 const E = {
-  red: '#BA3638',
-  red600: '#A32F31',
-  red700: '#8C2527',
-  redSoft: '#FEF2F2',
-  redTint: '#FBE9E9',
-  coral: '#F97373',
-  cream: '#FFF9F3',
-  cream2: '#FBF1E7',
-  gold: '#E8A317',
-  goldDark: '#C9842F',
-  goldDeep: '#B5781C',
-  goldSoft: '#FBEFD6',
-  goldTint: '#F6E2BC',
-  // Trust blue — method / LMS / credentials / parent
-  blue: '#2C6FB5',
-  blueDeep: '#1E5A9E',
-  blueSoft: '#EAF3FB',
+  red: '#CB0000',
+  red600: '#AE0000',
+  red700: '#8C0000',
+  redSoft: '#FCEAEA',
+  redTint: '#F6D2D2',
+  coral: '#CB0000',
+  // brand deep blue — credentials / stats / "data"
+  data: '#1D00B7',
+  dataDeep: '#15008A',
+  dataSoft: '#EDF6FF',
+  // legacy "gold" → ink (no yellow tint)
+  gold: '#1A1A1A',
+  goldDark: '#161A22',
+  goldDeep: '#161A22',
+  goldSoft: '#F7F7F7',
+  goldTint: '#E4E6E9',
+  // legacy "blue" → brand deep blue
+  blue: '#1D00B7',
+  blueDeep: '#15008A',
+  blueSoft: '#EDF6FF',
   blueTint: '#D3E6F7',
-  blueWash: '#F4F9FD',
-  steam: '#66C0F4',
-  ink: '#1F1F1F',
-  inkHead: '#23201C',
-  ink2: '#4A4A4A',
-  ink3: '#6B6B6B',
-  ink4: '#9CA3AF',
-  line: '#ECE8E2',
-  lineStrong: '#DCD6CD',
+  blueWash: '#EDF6FF',
+  steam: '#1D00B7',
+  ink: '#1A1A1A',
+  inkHead: '#161A22',
+  ink2: '#3F4651',
+  ink3: '#626A76',
+  ink4: '#8A93A0',
+  line: '#E4E6E9',
+  lineStrong: '#D2D5DA',
   surface: '#FFFFFF',
-  surfaceAlt: '#FBF6EF',   // warm cream panel (hero + footer zone only)
-  greyPanel: '#F4F5F6',    // cool light-grey panel (middle sections)
+  surfaceAlt: '#F7F7F7',   // brand grey panel
+  cream: '#F7F7F7',
+  cream2: '#EDF6FF',
+  greyPanel: '#F7F7F7',
   greyLine: '#E4E6E9',
-  // slate — neutral professional accent (worker / "người đi làm")
-  slate: '#586374',
-  slateDeep: '#414B59',
-  slateSoft: '#EFF1F4',
-  // segment CTA colors
-  green: '#15803D',
-  fontHead: "'Montserrat', 'Helvetica Neue', Arial, sans-serif",
-  fontBody: "'Helvetica Neue', 'Univers', Arial, sans-serif",
-  fontUi: "'Montserrat', 'Helvetica Neue', Arial, sans-serif",
-  shadowSm: '0 1px 2px rgba(15,23,42,0.05)',
-  shadowMd: '0 4px 6px -1px rgba(15,23,42,0.08), 0 2px 4px -2px rgba(15,23,42,0.04)',
-  shadowLg: '0 10px 15px -3px rgba(15,23,42,0.10), 0 4px 6px -4px rgba(15,23,42,0.05)',
-  shadowXl: '0 24px 48px -16px rgba(15,23,42,0.18), 0 8px 16px -8px rgba(15,23,42,0.08)',
-  shadowRed: '0 12px 28px -10px rgba(186,54,56,0.55)',
-  shadowRedSm: '0 6px 16px -8px rgba(186,54,56,0.45)',
+  // legacy "slate" → brand deep blue family
+  slate: '#1D00B7',
+  slateDeep: '#15008A',
+  slateSoft: '#EDF6FF',
+  // legacy segment CTA "green" → brand red
+  green: '#CB0000',
+  fontHead: "'Be Vietnam Pro', 'Helvetica Neue', Arial, sans-serif",
+  fontBody: "'Be Vietnam Pro', 'Helvetica Neue', Arial, sans-serif",
+  fontUi: "'Be Vietnam Pro', 'Helvetica Neue', Arial, sans-serif",
+  shadowSm: '0 1px 2px rgba(20,26,34,0.05)',
+  shadowMd: '0 4px 6px -1px rgba(20,26,34,0.08), 0 2px 4px -2px rgba(20,26,34,0.04)',
+  shadowLg: '0 10px 15px -3px rgba(20,26,34,0.10), 0 4px 6px -4px rgba(20,26,34,0.05)',
+  shadowXl: '0 24px 48px -16px rgba(20,26,34,0.16), 0 8px 16px -8px rgba(20,26,34,0.08)',
+  shadowRed: '0 12px 28px -10px rgba(203,0,0,0.42)',
+  shadowRedSm: '0 6px 16px -8px rgba(203,0,0,0.34)',
 };
 
 // Responsive hook — re-renders on breakpoint cross. mobile <760, tablet <1040
@@ -75,13 +83,14 @@ function EIcon({ name, size = 20, style }) {
 }
 
 // User-fillable image placeholder (web component <image-slot>)
-function Slot({ id, w, h, shape = 'rounded', radius = 16, placeholder, fit = 'cover', style }) {
+function Slot({ id, w, h, shape = 'rounded', radius = 16, placeholder, fit = 'cover', src, style }) {
   return (
     <image-slot
       id={id}
       shape={shape}
       radius={String(radius)}
       fit={fit}
+      src={src ? `${ASSET}photos/${src}` : undefined}
       placeholder={placeholder || 'Kéo ảnh vào đây'}
       style={{ width: typeof w === 'number' ? `${w}px` : w, height: typeof h === 'number' ? `${h}px` : h, display: 'block', ...style }}
     ></image-slot>
@@ -172,12 +181,12 @@ function RedDot({ size = 8 }) {
 }
 
 // Engonow logo — real brand lockup (open-book + gold pages, serif red wordmark)
-function EngonowMark({ height = 42, label = 'IELTS MASTER', labelColor }) {
+function EngonowMark({ height = 42, label = 'IELTS MASTER', labelColor, imgStyle }) {
   const lc = labelColor || E.red;
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
       <img src={R('logo', `${ASSET}engonow-logo.png`)} alt="ENGONOW — Enlighten Your Goal Now"
-        style={{ height, width: 'auto', display: 'block' }} />
+        style={{ height, width: 'auto', display: 'block', mixBlendMode: 'multiply', ...imgStyle }} />
       {label && (
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 12 }}>
           <span style={{ width: 1, height: height * 0.6, background: E.lineStrong, display: 'inline-block' }}></span>

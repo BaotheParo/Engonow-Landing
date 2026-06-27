@@ -31,7 +31,7 @@ function ChatBot() {
   const [typing, setTyping] = React.useState(false);
   const [input, setInput] = React.useState('');
   const [msgs, setMsgs] = React.useState([
-    { from: 'bot', text: 'Xin chào 👋 Mình là trợ lý ENGONOW. Bạn đang muốn tìm hiểu điều gì về khóa IELTS?', chips: BOT_QUICK },
+    { from: 'bot', text: 'Xin chào! Mình là trợ lý ENGONOW. Bạn đang muốn tìm hiểu điều gì về khóa IELTS?', chips: BOT_QUICK },
   ]);
   const scrollRef = React.useRef(null);
 
@@ -68,7 +68,7 @@ function ChatBot() {
   };
 
   return (
-    <div style={{ position: 'fixed', right: mobile ? 14 : 24, bottom: mobile ? 14 : 24, zIndex: 90, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 12 }}>
+    <div style={{ position: 'fixed', right: mobile ? 14 : 24, bottom: mobile ? 14 : 24, zIndex: 1500, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 12 }}>
       {/* Panel */}
       {open && (
         <div style={{
@@ -80,9 +80,7 @@ function ChatBot() {
         }}>
           {/* Header */}
           <div style={{ background: `linear-gradient(100deg, ${E.red} 0%, ${E.red700} 100%)`, padding: '16px 18px', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-            <span style={{ width: 42, height: 42, borderRadius: 999, background: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={E.red} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            </span>
+            <span style={{ width: 42, height: 42, borderRadius: 999, background: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: E.fontHead, fontWeight: 800, fontSize: 15, color: E.red, letterSpacing: '-0.02em' }}>EN</span>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 15, color: '#fff', letterSpacing: '-0.01em' }}>Trợ lý ENGONOW</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 }}>
@@ -90,8 +88,8 @@ function ChatBot() {
                 <span style={{ fontFamily: E.fontUi, fontSize: 11.5, color: 'rgba(255,255,255,0.9)' }}>Thường trả lời trong vài phút</span>
               </div>
             </div>
-            <button onClick={() => setOpen(false)} aria-label="Đóng" style={{ width: 30, height: 30, borderRadius: 999, background: 'rgba(255,255,255,0.18)', border: 'none', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <button onClick={() => setOpen(false)} aria-label="Đóng" style={{ height: 30, padding: '0 12px', borderRadius: 999, background: 'rgba(255,255,255,0.18)', border: 'none', cursor: 'pointer', color: '#fff', fontFamily: E.fontUi, fontSize: 12, fontWeight: 700, flexShrink: 0 }}>
+              Đóng
             </button>
           </div>
 
@@ -135,12 +133,10 @@ function ChatBot() {
 
           {/* Quick contact row */}
           <div style={{ display: 'flex', gap: 8, padding: '10px 12px 0', background: '#fff' }}>
-            <a href={`tel:${PHONE}`} style={{ flex: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '9px', borderRadius: 10, background: E.redSoft, color: E.red, fontFamily: E.fontUi, fontSize: 12.5, fontWeight: 700 }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={E.red} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              Hotline
+            <a href={`tel:${PHONE}`} style={{ flex: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '9px', borderRadius: 10, background: E.redSoft, color: E.red, fontFamily: E.fontUi, fontSize: 12.5, fontWeight: 700 }}>
+              Gọi hotline
             </a>
-            <a href={ZALO} target="_blank" rel="noopener noreferrer" style={{ flex: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '9px', borderRadius: 10, background: E.blueSoft, color: E.blueDeep, fontFamily: E.fontUi, fontSize: 12.5, fontWeight: 700 }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill={E.blueDeep}><path d="M12 2C6.48 2 2 5.94 2 10.8c0 2.74 1.42 5.18 3.64 6.78L5 21l3.86-1.5c.98.27 2.03.42 3.14.42 5.52 0 10-3.94 10-8.8S17.52 2 12 2z"/></svg>
+            <a href={ZALO} target="_blank" rel="noopener noreferrer" style={{ flex: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '9px', borderRadius: 10, background: E.dataSoft, color: E.data, fontFamily: E.fontUi, fontSize: 12.5, fontWeight: 700 }}>
               Chat Zalo
             </a>
           </div>
@@ -155,8 +151,8 @@ function ChatBot() {
               onFocus={e => e.currentTarget.style.borderColor = E.red}
               onBlur={e => e.currentTarget.style.borderColor = E.lineStrong}
             />
-            <button onClick={send} aria-label="Gửi" style={{ width: 42, height: 42, borderRadius: 999, background: E.red, border: 'none', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <button onClick={send} aria-label="Gửi" style={{ height: 42, padding: '0 18px', borderRadius: 999, background: E.red, border: 'none', cursor: 'pointer', color: '#fff', fontFamily: E.fontUi, fontSize: 13, fontWeight: 700, flexShrink: 0 }}>
+              Gửi
             </button>
           </div>
         </div>
@@ -164,20 +160,17 @@ function ChatBot() {
 
       {/* Launcher */}
       <button onClick={() => setOpen(o => !o)} aria-label="Mở trợ lý ENGONOW" style={{
-        position: 'relative', width: 60, height: 60, borderRadius: 999,
-        background: E.red, border: 'none', cursor: 'pointer', boxShadow: E.shadowRed,
+        position: 'relative', height: 54, padding: '0 26px', borderRadius: 999,
+        background: E.data, border: 'none', cursor: 'pointer', boxShadow: E.shadowLg,
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+        color: '#fff', fontFamily: E.fontUi, fontSize: 15, fontWeight: 700, letterSpacing: '-0.01em',
         transition: 'transform 160ms ease',
       }}
-      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.06)'}
+      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
       onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
       >
-        {!open && <span style={{ position: 'absolute', inset: 0, borderRadius: 999, background: E.red, opacity: 0.5, animation: 'botPulse 2s infinite' }} />}
-        <span style={{ position: 'relative', display: 'inline-flex' }}>
-          {open
-            ? <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            : <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>}
-        </span>
+        {!open && <span style={{ position: 'absolute', inset: 0, borderRadius: 999, background: E.data, opacity: 0.4, animation: 'botPulse 2s infinite' }} />}
+        <span style={{ position: 'relative' }}>{open ? 'Đóng' : (mobile ? 'Tư vấn' : 'Trợ lý ENGONOW')}</span>
       </button>
     </div>
   );

@@ -14,15 +14,18 @@ cd "ENGONOW Landing"
 python3 -m http.server 8000
 ```
 
-Then open: http://localhost:8000/ENGONOW%20IELTS%20Master%20Landing.html
+Then open: http://localhost:8000/
 
 > Needs an internet connection — React, ReactDOM, Leaflet, Babel, and the
-> Montserrat font are loaded from CDNs.
+> Be Vietnam Pro font are loaded from CDNs.
+
+Deployed via GitHub Pages (static hosting) — the live URL serves `index.html`
+at the repository's Pages root.
 
 ## Project structure
 
 ```
-ENGONOW IELTS Master Landing.html   # entry point (loads the .jsx modules)
+index.html                          # entry point (loads the .jsx modules)
 landing/
   App.jsx                           # composes all sections
   Hero.jsx Method.jsx Teachers.jsx Segments.jsx FAQ.jsx Lead.jsx Bot.jsx

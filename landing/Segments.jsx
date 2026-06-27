@@ -1,46 +1,46 @@
 // Sec 8/9/10: Three segment columns (text-left + photo-right)
 
 function SegmentsSection() {
-  const mobile = useIsMobile(820);
+  const mobile = useIsMobile(860);
   const segments = [
     {
       id: 'segment-student',
-      tag: 'DÀNH CHO HỌC SINH LỚP 11–12',
+      tag: 'DÀNH CHO HỌC SINH CẤP 3',
       icon: 'student',
-      headline: 'Nắm chắc tấm vé vào Đại học Top đầu.',
+      headline: 'Nắm chắc tấm vé vào Đại học Top đầu',
       bullets: [
-        'Thiết kế song song lịch học THPT và kỳ thi ĐGNL, không lo quá tải.',
-        'Tối ưu quỹ thời gian với lớp tối & cuối tuần.',
-        'Rút ngắn 50% thời gian ôn luyện.',
+        'Tối ưu lộ trình, học song song THPT & kỳ thi ĐGNL mà không lo quá tải.',
+        'Rút ngắn 50% thời gian ôn luyện so với các mô hình truyền thống.',
+        'Lịch học buổi tối & cuối tuần linh hoạt, quy đổi điểm xét tuyển sớm.',
       ],
-      cta: 'Test trình độ MIỄN PHÍ', ctaSub: null,
-      color: E.red, accent: 'red', slot: 'seg-student', slotPh: 'Nữ sinh cấp 3, đeo balo',
+      cta: 'Đăng ký test trình độ MIỄN PHÍ', ctaSub: null,
+      color: E.red, accent: 'red', slot: 'seg-student', src: 'seg-student.jpg', slotPh: 'Nữ sinh cấp 3, đeo balo',
     },
     {
       id: 'segment-worker',
       tag: 'DÀNH CHO SINH VIÊN & NGƯỜI ĐI LÀM',
       icon: 'bullseye-arrow',
-      headline: 'Bứt phá IELTS – Mở lối Du học, Định cư, Thăng tiến.',
+      headline: 'Bứt phá IELTS – Mở lối Du học & Thăng tiến Sự nghiệp',
       bullets: [
-        'Lớp học Online linh hoạt — tương tác cao.',
-        'Luyện tập mọi lúc với Smart Dictation.',
-        'Đầu tư thông minh từ 1.500.000đ/tháng.',
+        'Lớp học Online/Offline tương tác cao, giải quyết bài toán tăng ca hay kẹt xe.',
+        'Tối ưu quỹ thời gian eo hẹp với hệ sinh thái luyện tập Smart Dictation 24/7.',
+        'Giải pháp đầu tư thông minh cho sự nghiệp chỉ từ 1.500.000đ/tháng.',
       ],
-      cta: 'Tư vấn lộ trình du học / định cư', ctaSub: null,
-      color: E.slate, accent: 'slate', slot: 'seg-worker', slotPh: 'Nam giới đi làm, laptop',
+      cta: 'Tư vấn lộ trình cấp tốc', ctaSub: null,
+      color: E.data, accent: 'blue', slot: 'seg-worker', src: 'seg-worker.jpg', slotPh: 'Nam giới đi làm, laptop',
     },
     {
       id: 'segment-parent',
       tag: 'DÀNH CHO PHỤ HUYNH',
       icon: 'heart-health-muscle',
-      headline: 'Trao gửi niềm tin – Đồng hành cùng con.',
+      headline: 'Trao gửi niềm tin – An tâm đồng hành cùng con',
       bullets: [
-        'Quy trình học rõ ràng – minh bạch.',
-        'Giáo viên theo sát tiến độ.',
-        'Cam kết không bỏ rơi học viên.',
+        'Minh bạch tuyệt đối với báo cáo tiến độ học tập và điểm số định kỳ.',
+        'Giáo viên chủ nhiệm theo sát, lập tức liên hệ hỗ trợ khi con vắng mặt.',
+        'Cam kết môi trường học tập chất lượng, không để học viên bị bỏ lại phía sau.',
       ],
-      cta: 'Tư vấn lộ trình cho con ngay', ctaSub: null,
-      color: E.blue, accent: 'blue', slot: 'seg-parent', slotPh: 'Gia đình (bố mẹ & con)',
+      cta: 'Nhận tư vấn lộ trình cho con', ctaSub: null,
+      color: E.red, accent: 'red', slot: 'seg-parent', src: 'seg-parent.jpg', slotPh: 'Gia đình (bố mẹ & con)',
     },
   ];
   return (
@@ -65,7 +65,7 @@ function SegmentColumn({ s, mobile }) {
       background: '#fff', borderRadius: 20, overflow: 'hidden',
       border: `1px solid ${E.line}`, boxShadow: E.shadowSm,
       display: 'flex', flexDirection: 'column',
-      scrollMarginTop: 84,
+      scrollMarginTop: 56,
     }}>
       {/* Header label */}
       <div style={{ padding: '18px 22px 0', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
@@ -78,15 +78,15 @@ function SegmentColumn({ s, mobile }) {
           <h3 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 19, lineHeight: 1.22, color: E.inkHead, margin: '0 0 14px', letterSpacing: '-0.01em' }}>{s.headline}</h3>
           <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
             {s.bullets.map((b, i) => (
-              <li key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontFamily: E.fontBody, fontSize: 13, lineHeight: 1.4, color: E.ink2 }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={s.color} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 2 }}><polyline points="20 6 9 17 4 12"/></svg>
+              <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontFamily: E.fontBody, fontSize: 14, lineHeight: 1.45, color: E.ink2 }}>
+                <span style={{ width: 14, height: 2, background: s.color, flexShrink: 0, marginTop: 9 }} />
                 {b}
               </li>
             ))}
           </ul>
         </div>
         {/* Photo */}
-        <Slot id={s.slot} w="100%" h={mobile ? 200 : 180} radius={12} placeholder={s.slotPh} style={{ alignSelf: 'stretch' }} />
+        <Slot id={s.slot} src={s.src} w="100%" h={mobile ? 200 : 180} radius={12} placeholder={s.slotPh} style={{ alignSelf: 'stretch' }} />
       </div>
 
       {/* Button */}
