@@ -1,7 +1,7 @@
 // Sec 3: Pain (cream) · Sec 4: Framework (pale blue) · Sec 5: Results (white)
 
 function ProblemSection() {
-  const mobile = useIsMobile(820);
+  const mobile = useIsMobile(860);
   const [hovered, setHovered] = React.useState(false);
   const pains = [
     'Lớp quá đông, giáo viên khó theo sát.',
@@ -10,20 +10,18 @@ function ProblemSection() {
     'Học nhiều nhưng không thấy tiến bộ.',
   ];
   return (
-    <section className="section" style={{ background: '#F7F7F7', borderBottom: `1px solid ${E.greyLine}` }}>
+    <section className="section" style={{ background: E.surfaceAlt, borderBottom: `1px solid ${E.greyLine}` }}>
       <div className="container">
         <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: mobile ? 32 : 56, alignItems: 'center' }}>
           <div>
-            <h2 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 'clamp(26px,4vw,38px)', lineHeight: 1.14, letterSpacing: '-0.02em', color: E.inkHead, margin: '0 0 24px' }}>
+            <h2 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 'clamp(26px,4vw,38px)', lineHeight: 1.14, letterSpacing: '-0.025em', color: E.inkHead, margin: '0 0 24px' }}>
               Tại sao bạn vẫn ở band <span style={{ color: E.red }}>5.5</span>?
             </h2>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 26 }}>
+            <div style={{ marginBottom: 26, borderTop: `1px solid ${E.line}` }}>
               {pains.map((p, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <span style={{ width: 24, height: 24, borderRadius: 999, background: '#fff', border: `1px solid ${E.redTint}`, flexShrink: 0, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={E.red} strokeWidth="3" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
-                  </span>
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '13px 0', borderBottom: `1px solid ${E.line}` }}>
+                  <span style={{ width: 18, height: 2, background: E.red, flexShrink: 0, marginTop: 10 }} />
                   <div style={{ fontFamily: E.fontBody, fontSize: 15.5, lineHeight: 1.45, color: E.ink }}>{p}</div>
                 </div>
               ))}
@@ -34,7 +32,7 @@ function ProblemSection() {
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}
               style={{
-                padding: '18px 20px', background: '#fff', color: E.ink,
+                padding: '18px 22px', background: '#fff', color: E.ink,
                 borderRadius: 14, border: `1px solid ${hovered ? E.red : E.redTint}`,
                 boxShadow: hovered ? E.shadowLg : E.shadowSm,
                 transform: hovered ? 'translateY(-6px) scale(1.02)' : 'none',
@@ -45,24 +43,6 @@ function ProblemSection() {
                 gap: 16,
               }}
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke={E.red}
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{
-                  flexShrink: 0,
-                  transform: hovered ? 'translateX(4px)' : 'none',
-                  transition: 'transform 250ms ease',
-                }}
-              >
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
               <p style={{ fontFamily: E.fontBody, fontSize: 14.5, lineHeight: 1.5, margin: 0, color: E.ink2 }}>
                 <strong style={{ color: E.red }}>ENGONOW IELTS Master</strong> hóa giải bài toán này bằng sự tận tâm từ đội ngũ giáo viên và hệ thống LMS độc quyền.
               </p>
@@ -72,6 +52,7 @@ function ProblemSection() {
           {/* Right — photo (bubbles completely removed) */}
           <div style={{ position: 'relative' }}>
             <Slot id="pain-student" w="100%" h={mobile ? 300 : 400} radius={20}
+              src="pain-student.jpg"
               placeholder="Ảnh học viên nam căng thẳng, học một mình bên laptop" />
           </div>
         </div>
@@ -82,7 +63,7 @@ function ProblemSection() {
 
 // ============= FRAMEWORK — pale blue method band =============
 function WhyFast() {
-  const mobile = useIsMobile(760);
+  const mobile = useIsMobile(900);
   const [activeIcon, setActiveIcon] = React.useState(null);
 
   const deepBlueFilter = 'brightness(0) saturate(100%) invert(11%) sepia(97%) saturate(6669%) hue-rotate(248deg) brightness(85%) contrast(105%)';
@@ -129,7 +110,7 @@ function WhyFast() {
         pointerEvents: 'none',
         zIndex: 0,
         overflow: 'hidden',
-        color: '#1D00B7',
+        color: '#1E3A5F',
       }}>
         <svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ minWidth: 1200, flexShrink: 0 }}>
           {/* Dotted map abstraction / network graph */}
@@ -193,7 +174,7 @@ function WhyFast() {
                   gridColumn: (mobile && i === 4) ? 'span 2' : 'auto',
                   cursor: 'pointer',
                   borderRadius: 16,
-                  background: isActive ? 'rgba(29, 0, 183, 0.03)' : 'transparent',
+                  background: isActive ? E.dataSoft : 'transparent',
                   transition: 'background 250ms ease',
                 }}
               >
@@ -201,51 +182,28 @@ function WhyFast() {
                   width: 54,
                   height: 54,
                   borderRadius: 14,
-                  background: '#ffffff',
-                  border: `1px solid ${isActive ? '#1D00B7' : E.greyLine}`,
-                  boxShadow: isActive ? '0 6px 16px rgba(29, 0, 183, 0.12)' : '0 4px 12px rgba(29, 0, 183, 0.06)',
+                  background: isActive ? E.data : '#fff',
+                  border: `1px solid ${isActive ? E.data : E.line}`,
+                  color: isActive ? '#fff' : E.data,
+                  boxShadow: isActive ? E.shadowMd : E.shadowSm,
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  fontFamily: E.fontHead, fontWeight: 800, fontSize: 18, letterSpacing: '-0.02em',
                   transition: 'all 250ms ease',
                   flexShrink: 0,
                 }}>
-                  <EIcon name={it.icon} size={26} style={{ filter: deepBlueFilter }} />
+                  {String(i + 1).padStart(2, '0')}
                 </span>
                 <div style={{
                   fontFamily: E.fontUi,
                   fontSize: 14,
                   fontWeight: 700,
-                  color: isActive ? '#1D00B7' : E.ink,
+                  color: isActive ? '#1E3A5F' : E.ink,
                   lineHeight: 1.35,
                   transition: 'color 250ms ease',
                 }}>
                   {it.title}
-                </div>
-                {/* Subtle indicator chevron */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginTop: 2,
-                }}>
-                  <svg 
-                    width="12" 
-                    height="12" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke={isActive ? '#1D00B7' : E.ink3} 
-                    strokeWidth="3" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                    style={{
-                      transform: isActive ? 'rotate(180deg)' : 'none',
-                      transition: 'transform 250ms ease, stroke 250ms ease',
-                      opacity: 0.6,
-                    }}
-                  >
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
                 </div>
                 {/* Description with smooth transition */}
                 <div style={{
@@ -280,7 +238,7 @@ function WhyFast() {
 
 // ============= RESULTS — spotlight carousel (white) =============
 function ResultsSection() {
-  const mobile = useIsMobile(760);
+  const mobile = useIsMobile(860);
   const [val1, setVal1] = React.useState(0);
   const [val2, setVal2] = React.useState(0);
   const [val3, setVal3] = React.useState(0);
@@ -331,22 +289,25 @@ function ResultsSection() {
   const winners = [
     {
       slot: 'result-3',
+      src: 'testi-anh-thu.jpg',
       name: 'LÊ ANH THƯ',
-      subtitle: 'OVERALL 7.5 | THPT MẠC ĐĨNH CHI',
+      subtitle: 'THPT MẠC ĐĨNH CHI',
       band: '7.5',
       quote: 'Từng loay hoay tự học và bế tắc khi Writing, Speaking thiếu ý tưởng, còn Reading, Listening chưa tiếp cận đúng phương pháp. Nhờ phương pháp M.E.E.R. tại Engonow, tư duy được hệ thống lại, khung ý trở nên rõ ràng và khả năng nắm bắt thông tin cải thiện vượt bậc. Kết quả IELTS 7.5 ngay lần thi đầu tiên là minh chứng sắc nét cho một lộ trình đúng đắn đi cùng sự kiên trì.'
     },
     {
       slot: 'result-1',
+      src: 'testi-minh-nhat.jpg',
       name: 'ĐOÀN MINH NHẬT',
-      subtitle: 'OVERALL 7.5 | THPT BÌNH PHÚ',
+      subtitle: 'THPT BÌNH PHÚ',
       band: '7.5',
       quote: 'Ban đầu, mục tiêu học IELTS chỉ để đạt chứng chỉ do tâm lý FOMO. Tuy nhiên, quá trình rèn luyện tại Engonow đã giúp làm chủ ngôn ngữ, mở rộng tư duy và gia tăng lựa chọn trong cuộc sống. Mức điểm IELTS 7.5 không chỉ là một kết quả học thuật, mà còn đánh dấu sự trưởng thành trong nhận thức để chủ động định hướng tương lai.'
     },
     {
       slot: 'result-2',
+      src: 'testi-gia-bao.jpg',
       name: 'LÊ PHAN GIA BẢO',
-      subtitle: 'OVERALL 8.0 | THPT BÌNH PHÚ',
+      subtitle: 'THPT BÌNH PHÚ',
       band: '8.0',
       quote: 'Từng mắc kẹt trong sự trì hoãn, dù có nền tảng từ vựng nhưng vẫn \'chững band\' do thiếu phương pháp và kỷ luật. Nhờ được định hướng lại cách tiếp cận ngôn ngữ một cách hệ thống tại Engonow, mọi giới hạn đã được phá vỡ. Kết quả IELTS 8.0 không chỉ là thành tích xuất sắc, mà còn là minh chứng vững chắc cho sự thay đổi toàn diện trong tư duy và tính kỷ luật.'
     },
@@ -363,22 +324,20 @@ function ResultsSection() {
     return () => clearInterval(t);
   }, [paused, n]);
 
-  const Arrow = ({ dir, inline }) => (
+  const Arrow = ({ dir }) => (
     <button
       onClick={() => go(dir)}
       aria-label={dir < 0 ? 'Trước' : 'Sau'}
       style={{
-        position: inline ? 'static' : 'absolute', top: inline ? undefined : '50%',
-        transform: inline ? 'none' : 'translateY(-50%)',
-        [dir < 0 ? 'left' : 'right']: inline ? undefined : -22, zIndex: 6,
-        width: 44, height: 44, borderRadius: 999, background: '#fff',
-        border: `1px solid ${E.line}`, boxShadow: E.shadowLg, cursor: 'pointer',
-        display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+        height: 40, padding: '0 18px', borderRadius: 999, background: '#fff',
+        border: `1px solid ${E.lineStrong}`, cursor: 'pointer', flexShrink: 0,
+        fontFamily: E.fontUi, fontSize: 13, fontWeight: 700, color: E.ink, letterSpacing: '0.02em',
+        transition: 'border-color 180ms ease, color 180ms ease',
       }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = E.red; e.currentTarget.style.color = E.red; }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = E.lineStrong; e.currentTarget.style.color = E.ink; }}
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={E.ink} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-        {dir < 0 ? <polyline points="15 18 9 12 15 6" /> : <polyline points="9 18 15 12 9 6" />}
-      </svg>
+      {dir < 0 ? 'Trước' : 'Sau'}
     </button>
   );
 
@@ -431,38 +390,25 @@ function ResultsSection() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          {!mobile && <Arrow dir={-1} />}
-          {!mobile && <Arrow dir={1} />}
-
           {/* Viewport */}
           <div style={{ overflow: 'hidden', borderRadius: 22 }}>
             <div style={{ display: 'flex', transform: `translateX(-${idx * 100}%)`, transition: 'transform 520ms cubic-bezier(0.4,0,0.2,1)' }}>
               {winners.map(w => (
                 <div key={w.slot} style={{ flex: '0 0 100%', minWidth: 0 }}>
                   <div style={{
-                    background: '#fff', borderRadius: 22, border: `1px solid ${E.line}`, boxShadow: E.shadowLg,
+                    background: '#fff', borderRadius: 22, boxShadow: E.shadowLg,
                     padding: mobile ? '24px 20px 28px' : 32,
                     display: 'grid', gridTemplateColumns: mobile ? '1fr' : '230px 1fr', gap: mobile ? 28 : 32, alignItems: 'center',
                   }}>
-                    {/* Photo + band */}
+                    {/* Photo — square slot matches square Hall-of-Fame image (band already baked in) */}
                     <div style={{ position: 'relative', width: mobile ? 180 : 'auto', margin: mobile ? '0 auto' : 0 }}>
-                      <Slot id={w.slot} w="100%" h={mobile ? 220 : 280} radius={18} placeholder="Ảnh học viên" />
-                      <div style={{
-                        position: 'absolute', bottom: -14, left: '50%', transform: 'translateX(-50%)',
-                        background: E.red, color: '#fff', borderRadius: 12, padding: '8px 16px',
-                        boxShadow: E.shadowRedSm, textAlign: 'center', whiteSpace: 'nowrap',
-                      }}>
-                        <div style={{ fontFamily: E.fontUi, fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', opacity: 0.85 }}>OVERALL</div>
-                        <div style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 22, lineHeight: 1 }}>{w.band}</div>
-                      </div>
+                      <Slot id={w.slot} src={w.src} fit="cover" w="100%" h={mobile ? 180 : 230} radius={18} placeholder="Ảnh học viên" />
                     </div>
 
                     {/* Quote */}
                     <div style={{ textAlign: mobile ? 'center' : 'left', paddingTop: mobile ? 8 : 0 }}>
-                      <div style={{ display: 'flex', gap: 3, marginBottom: 12, justifyContent: mobile ? 'center' : 'flex-start' }}>
-                        {[0, 1, 2, 3, 4].map(s => (
-                          <svg key={s} width="18" height="18" viewBox="0 0 24 24" fill={E.gold}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" /></svg>
-                        ))}
+                      <div style={{ fontFamily: E.fontUi, fontSize: 11.5, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: E.red, marginBottom: 12 }}>
+                        Cảm nhận học viên
                       </div>
                       <p style={{ fontFamily: E.fontBody, fontSize: mobile ? 15 : 17, lineHeight: 1.6, color: E.ink, margin: '0 0 18px', fontStyle: 'italic' }}>"{w.quote}"</p>
                       <div style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 17, color: E.inkHead, letterSpacing: '-0.01em' }}>{w.name}</div>
@@ -475,10 +421,10 @@ function ResultsSection() {
           </div>
 
           {/* Controls */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: mobile ? 20 : 0, marginTop: 22 }}>
-            {mobile && <Arrow dir={-1} inline />}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, marginTop: 24 }}>
+            <Arrow dir={-1} />
             <Dots />
-            {mobile && <Arrow dir={1} inline />}
+            <Arrow dir={1} />
           </div>
         </div>
 
@@ -500,21 +446,14 @@ function ResultsSection() {
               textDecoration: 'none',
               padding: '12px 28px',
               borderRadius: 30,
-              background: linkHover ? E.red : 'rgba(238, 77, 45, 0.03)',
+              background: linkHover ? E.red : E.redSoft,
               border: `1.5px solid ${E.red}`,
-              boxShadow: linkHover ? '0 4px 14px rgba(238, 77, 45, 0.25)' : 'none',
+              boxShadow: linkHover ? E.shadowRedSm : 'none',
               transform: linkHover ? 'translateY(-2px)' : 'none',
               transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)',
               cursor: 'pointer'
             }}
           >
-            <span style={{ 
-              transform: linkHover ? 'translateX(4px)' : 'none', 
-              transition: 'transform 200ms ease',
-              display: 'inline-block'
-            }}>
-              —&gt;
-            </span>
             <span>
               Xem thêm 100+ câu chuyện thành công
             </span>

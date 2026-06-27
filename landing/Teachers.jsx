@@ -2,7 +2,7 @@
 // Sec 7: Pricing band
 
 function TeachersSection() {
-  const mobile = useIsMobile(760);
+  const mobile = useIsMobile(860);
   const devotions = [
     { 
       icon: 'edit', 
@@ -21,10 +21,10 @@ function TeachersSection() {
     },
   ];
   const teachers = [
-    { name: 'Thầy Huỳnh Thế Mạnh', band: '8.0', slot: 'teacher-1' },
-    { name: 'Thầy Trần Anh Kha',   band: '8.0', slot: 'teacher-2' },
-    { name: 'Thầy Trần Bạch Đằng', band: '8.0', slot: 'teacher-3' },
-    { name: 'Cô Felicia Phạm', band: '8.5', slot: 'teacher-4' },
+    { name: 'Thầy Huỳnh Thế Mạnh', band: '8.0', slot: 'teacher-1', src: 'teacher-manh.jpg' },
+    { name: 'Thầy Trần Anh Kha',   band: '8.0', slot: 'teacher-2', src: 'teacher-kha.jpg' },
+    { name: 'Thầy Trần Bạch Đằng', band: '8.0', slot: 'teacher-3', src: 'teacher-dang.jpg' },
+    { name: 'Cô Felicia Phạm', band: '8.5', slot: 'teacher-4', src: 'teacher-felicia.jpg' },
   ];
   return (
     <section id="teachers" className="section" style={{ background: '#EDF6FF', borderTop: `1px solid ${E.greyLine}` }}>
@@ -66,30 +66,31 @@ function TeachersSection() {
 
         {/* 4 teacher cards */}
         <div style={{ display: 'grid', gridTemplateColumns: mobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: mobile ? 12 : 18 }}>
-          {teachers.map(t => <TeacherCard key={t.slot} t={t} />)}
+          {teachers.map(t => <TeacherCard key={t.slot} t={t} mobile={mobile} />)}
         </div>
       </div>
     </section>
   );
 }
 
-function TeacherCard({ t }) {
+function TeacherCard({ t, mobile }) {
   const [hover, setHover] = React.useState(false);
   return (
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
-        background: '#fff', borderRadius: 16, padding: 14,
+        background: '#fff', borderRadius: 16, padding: mobile ? 16 : 14,
         border: `1px solid ${hover ? E.red : E.line}`,
         boxShadow: hover ? E.shadowLg : E.shadowSm,
         transform: hover ? 'translateY(-4px)' : 'none',
         transition: 'transform 220ms cubic-bezier(0.4,0,0.2,1), box-shadow 220ms ease, border-color 220ms ease',
-        display: 'flex', gap: 14, alignItems: 'center', cursor: 'default',
+        display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: mobile ? 14 : 14,
+        alignItems: 'center', textAlign: mobile ? 'center' : 'left', cursor: 'default',
       }}
     >
       <div style={{ position: 'relative', flexShrink: 0 }}>
-        <Slot id={t.slot} w={72} h={84} radius={10} placeholder="Ảnh GV" />
+        <Slot id={t.slot} src={t.src} w={mobile ? 84 : 72} h={mobile ? 98 : 84} radius={10} placeholder="Ảnh GV" />
         <span style={{
           position: 'absolute', bottom: -6, left: '50%', transform: 'translateX(-50%)',
           fontFamily: E.fontUi, fontSize: 9.5, fontWeight: 700, color: '#fff', background: E.red,
@@ -98,10 +99,7 @@ function TeacherCard({ t }) {
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontFamily: E.fontHead, fontWeight: 700, fontSize: 14.5, color: hover ? E.red : E.inkHead, lineHeight: 1.25, letterSpacing: '-0.01em', transition: 'color 200ms ease' }}>{t.name}</div>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={E.red} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span style={{ fontFamily: E.fontUi, fontSize: 11.5, fontWeight: 600, color: E.ink3 }}>TESOL · IELTS {t.band}</span>
-        </div>
+        <div style={{ fontFamily: E.fontUi, fontSize: 11.5, fontWeight: 600, color: E.ink3, marginTop: mobile ? 6 : 8, letterSpacing: '0.02em' }}>TESOL · IELTS {t.band}</div>
       </div>
     </div>
   );
