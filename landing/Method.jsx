@@ -110,7 +110,7 @@ function WhyFast() {
         pointerEvents: 'none',
         zIndex: 0,
         overflow: 'hidden',
-        color: '#1E3A5F',
+        color: '#1D00B7',
       }}>
         <svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ minWidth: 1200, flexShrink: 0 }}>
           {/* Dotted map abstraction / network graph */}
@@ -199,7 +199,7 @@ function WhyFast() {
                   fontFamily: E.fontUi,
                   fontSize: 14,
                   fontWeight: 700,
-                  color: isActive ? '#1E3A5F' : E.ink,
+                  color: isActive ? '#1D00B7' : E.ink,
                   lineHeight: 1.35,
                   transition: 'color 250ms ease',
                 }}>

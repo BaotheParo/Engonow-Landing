@@ -38,30 +38,30 @@ img {
 }
 
 :root {
-  /* Momentum palette — cool/clean base, single red accent, deep ink-blue for data */
-  --red: #BA3638;
-  --red-600: #A32F31;
-  --red-700: #8B2728;
-  --red-soft: #FBEDED;
-  --red-tint: #F6E0E0;
-  --data: #1E3A5F;        /* deep ink-blue — data / credentials only */
-  --data-soft: #EDF1F6;
+  /* Team brand palette — red #CB0000, deep blue #1D00B7, grey #F7F7F7, light blue #EDF6FF */
+  --red: #CB0000;
+  --red-600: #AE0000;
+  --red-700: #8C0000;
+  --red-soft: #FCEAEA;
+  --red-tint: #F6D2D2;
+  --data: #1D00B7;        /* brand deep blue — data / credentials */
+  --data-soft: #EDF6FF;
   --ink: #1A1A1A;
   --ink-head: #161A22;
   --ink-2: #3F4651;
   --ink-3: #626A76;
   --ink-4: #8A93A0;
-  --line: #E6E9ED;        /* cool hairline */
-  --line-strong: #D2D7DE;
+  --line: #E4E6E9;
+  --line-strong: #D2D5DA;
   --surface: #FFFFFF;
-  --surface-alt: #F4F6F8; /* cool light panel — replaces all cream */
+  --surface-alt: #F7F7F7; /* brand grey panel */
 
   --shadow-sm: 0 1px 2px rgba(20, 26, 34, 0.05);
   --shadow-md: 0 4px 10px -2px rgba(20, 26, 34, 0.08);
   --shadow-lg: 0 14px 30px -10px rgba(20, 26, 34, 0.12);
   --shadow-xl: 0 28px 56px -18px rgba(20, 26, 34, 0.16);
-  --shadow-red: 0 12px 26px -10px rgba(186, 54, 56, 0.40);
-  --shadow-red-sm: 0 6px 16px -8px rgba(186, 54, 56, 0.34);
+  --shadow-red: 0 12px 26px -10px rgba(203, 0, 0, 0.38);
+  --shadow-red-sm: 0 6px 16px -8px rgba(203, 0, 0, 0.32);
 
   --font-head: 'Be Vietnam Pro', 'Helvetica Neue', Arial, sans-serif;
   --font-ui: 'Be Vietnam Pro', 'Helvetica Neue', Arial, sans-serif;

@@ -6,52 +6,52 @@ function R(id, fallback) {
   return (typeof window !== 'undefined' && window.__resources && window.__resources[id]) || fallback;
 }
 
-// Momentum palette — one red accent + one deep ink-blue for data, cool neutrals.
-// Legacy accent keys (gold/blue/slate/green/coral/steam/cream) are remapped onto
-// the disciplined system so every existing usage stays on-palette.
+// Team brand palette (BẢNG MÀU): red #CB0000, deep blue #1D00B7, grey #F7F7F7,
+// light blue #EDF6FF. Momentum layout kept; only the colors are re-pointed to brand.
+// Legacy accent keys (gold/blue/slate/green/coral/steam/cream) map onto the brand set.
 const E = {
-  red: '#BA3638',
-  red600: '#A32F31',
-  red700: '#8C2527',
-  redSoft: '#FBEDED',
-  redTint: '#F6E0E0',
-  coral: '#BA3638',
-  // data ink-blue — credentials / stats only
-  data: '#1E3A5F',
-  dataDeep: '#16293F',
-  dataSoft: '#EDF1F6',
-  // legacy "gold" → demoted to ink (no more yellow tint anywhere)
+  red: '#CB0000',
+  red600: '#AE0000',
+  red700: '#8C0000',
+  redSoft: '#FCEAEA',
+  redTint: '#F6D2D2',
+  coral: '#CB0000',
+  // brand deep blue — credentials / stats / "data"
+  data: '#1D00B7',
+  dataDeep: '#15008A',
+  dataSoft: '#EDF6FF',
+  // legacy "gold" → ink (no yellow tint)
   gold: '#1A1A1A',
   goldDark: '#161A22',
   goldDeep: '#161A22',
-  goldSoft: '#F4F6F8',
-  goldTint: '#E6E9ED',
-  // legacy "blue" → data ink-blue
-  blue: '#1E3A5F',
-  blueDeep: '#16293F',
-  blueSoft: '#EDF1F6',
-  blueTint: '#D8E0EA',
-  blueWash: '#F4F6F8',
-  steam: '#1E3A5F',
+  goldSoft: '#F7F7F7',
+  goldTint: '#E4E6E9',
+  // legacy "blue" → brand deep blue
+  blue: '#1D00B7',
+  blueDeep: '#15008A',
+  blueSoft: '#EDF6FF',
+  blueTint: '#D3E6F7',
+  blueWash: '#EDF6FF',
+  steam: '#1D00B7',
   ink: '#1A1A1A',
   inkHead: '#161A22',
   ink2: '#3F4651',
   ink3: '#626A76',
   ink4: '#8A93A0',
-  line: '#E6E9ED',
-  lineStrong: '#D2D7DE',
+  line: '#E4E6E9',
+  lineStrong: '#D2D5DA',
   surface: '#FFFFFF',
-  surfaceAlt: '#F4F6F8',   // cool light panel (replaces all cream)
-  cream: '#F4F6F8',
-  cream2: '#EDF1F6',
-  greyPanel: '#F4F6F8',
-  greyLine: '#E6E9ED',
-  // legacy "slate" → data ink-blue family
-  slate: '#1E3A5F',
-  slateDeep: '#16293F',
-  slateSoft: '#EDF1F6',
-  // legacy segment CTA "green" → red (single accent)
-  green: '#BA3638',
+  surfaceAlt: '#F7F7F7',   // brand grey panel
+  cream: '#F7F7F7',
+  cream2: '#EDF6FF',
+  greyPanel: '#F7F7F7',
+  greyLine: '#E4E6E9',
+  // legacy "slate" → brand deep blue family
+  slate: '#1D00B7',
+  slateDeep: '#15008A',
+  slateSoft: '#EDF6FF',
+  // legacy segment CTA "green" → brand red
+  green: '#CB0000',
   fontHead: "'Be Vietnam Pro', 'Helvetica Neue', Arial, sans-serif",
   fontBody: "'Be Vietnam Pro', 'Helvetica Neue', Arial, sans-serif",
   fontUi: "'Be Vietnam Pro', 'Helvetica Neue', Arial, sans-serif",
@@ -59,8 +59,8 @@ const E = {
   shadowMd: '0 4px 6px -1px rgba(20,26,34,0.08), 0 2px 4px -2px rgba(20,26,34,0.04)',
   shadowLg: '0 10px 15px -3px rgba(20,26,34,0.10), 0 4px 6px -4px rgba(20,26,34,0.05)',
   shadowXl: '0 24px 48px -16px rgba(20,26,34,0.16), 0 8px 16px -8px rgba(20,26,34,0.08)',
-  shadowRed: '0 12px 28px -10px rgba(186,54,56,0.45)',
-  shadowRedSm: '0 6px 16px -8px rgba(186,54,56,0.38)',
+  shadowRed: '0 12px 28px -10px rgba(203,0,0,0.42)',
+  shadowRedSm: '0 6px 16px -8px rgba(203,0,0,0.34)',
 };
 
 // Responsive hook — re-renders on breakpoint cross. mobile <760, tablet <1040

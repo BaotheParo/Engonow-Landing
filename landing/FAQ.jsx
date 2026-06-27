@@ -99,7 +99,7 @@ function CampusMap() {
       const pin = (hq) => L.divIcon({
         className: 'engo-pin',
         html: `<div style="position:relative;width:30px;height:38px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))">
-          <svg width="30" height="38" viewBox="0 0 30 38" fill="none"><path d="M15 0C6.7 0 0 6.7 0 15c0 10 15 23 15 23s15-13 15-23C30 6.7 23.3 0 15 0z" fill="${hq ? '#BA3638' : '#8C2527'}"/><circle cx="15" cy="15" r="6" fill="#fff"/>${hq ? '<circle cx=\"15\" cy=\"15\" r=\"3\" fill=\"#1E3A5F\"/>' : '<circle cx=\"15\" cy=\"15\" r=\"3\" fill=\"#BA3638\"/>'}</svg>
+          <svg width="30" height="38" viewBox="0 0 30 38" fill="none"><path d="M15 0C6.7 0 0 6.7 0 15c0 10 15 23 15 23s15-13 15-23C30 6.7 23.3 0 15 0z" fill="${hq ? '#CB0000' : '#8C0000'}"/><circle cx="15" cy="15" r="6" fill="#fff"/>${hq ? '<circle cx=\"15\" cy=\"15\" r=\"3\" fill=\"#1D00B7\"/>' : '<circle cx=\"15\" cy=\"15\" r=\"3\" fill=\"#CB0000\"/>'}</svg>
         </div>`,
         iconSize: [30, 38], iconAnchor: [15, 38], popupAnchor: [0, -34],
       });
@@ -107,7 +107,7 @@ function CampusMap() {
       campuses.forEach((c, i) => {
         const m = L.marker(c.pos, { icon: pin(c.hq) }).addTo(map);
         const gmap = c.gmap || `https://www.google.com/maps/dir/?api=1&destination=${c.pos[0]},${c.pos[1]}`;
-        m.bindPopup(`<div style="font-family:'Be Vietnam Pro',sans-serif;min-width:170px"><strong style="color:#BA3638">${c.tag}</strong><br><span style="font-size:12px;color:#3F4651">${c.addr}</span><br><a href="${gmap}" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:#1E3A5F;text-decoration:underline">Chỉ đường Google Maps</a></div>`);
+        m.bindPopup(`<div style="font-family:'Be Vietnam Pro',sans-serif;min-width:170px"><strong style="color:#CB0000">${c.tag}</strong><br><span style="font-size:12px;color:#3F4651">${c.addr}</span><br><a href="${gmap}" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:#1D00B7;text-decoration:underline">Chỉ đường Google Maps</a></div>`);
         m.on('click', () => setActive(i));
         markersRef.current[i] = m;
         pts.push(c.pos);
