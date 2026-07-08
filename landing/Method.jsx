@@ -4,10 +4,10 @@ function ProblemSection() {
   const mobile = useIsMobile(860);
   const [hovered, setHovered] = React.useState(false);
   const pains = [
-    'Lớp quá đông, giáo viên khó theo sát.',
-    'Không ai sửa bài Writing/Speaking chi tiết.',
-    'Thiếu môi trường luyện tập thực tế mỗi ngày.',
-    'Học nhiều nhưng không thấy tiến bộ.',
+    'Lớp đông khiến giáo viên khó theo sát từng người học.',
+    'Bài Writing/Speaking không được sửa chi tiết theo tiêu chí chấm.',
+    'Thiếu môi trường luyện tập bốn kỹ năng đều đặn mỗi ngày.',
+    'Học nhiều nhưng thiếu một lộ trình có định hướng rõ ràng.',
   ];
   return (
     <section className="section" style={{ background: E.surfaceAlt, borderBottom: `1px solid ${E.greyLine}` }}>
@@ -15,7 +15,7 @@ function ProblemSection() {
         <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: mobile ? 32 : 56, alignItems: 'center' }}>
           <div>
             <h2 style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: 'clamp(26px,4vw,38px)', lineHeight: 1.14, letterSpacing: '-0.025em', color: E.inkHead, margin: '0 0 24px' }}>
-              Tại sao bạn vẫn ở band <span style={{ color: E.red }}>5.5</span>?
+              Điều gì thường khiến người học <span style={{ color: E.red }}>chững lại</span>?
             </h2>
 
             <div style={{ marginBottom: 26, borderTop: `1px solid ${E.line}` }}>
@@ -44,7 +44,7 @@ function ProblemSection() {
               }}
             >
               <p style={{ fontFamily: E.fontBody, fontSize: 14.5, lineHeight: 1.5, margin: 0, color: E.ink2 }}>
-                <strong style={{ color: E.red }}>ENGONOW IELTS Master</strong> hóa giải bài toán này bằng sự tận tâm từ đội ngũ giáo viên và hệ thống LMS độc quyền.
+                Tại <strong style={{ color: E.red }}>ENGONOW IELTS Master</strong>, chúng tôi giải quyết những điểm nghẽn này bằng lớp sĩ số nhỏ, quy trình sửa bài 1-1 theo bốn tiêu chí, và hệ thống LMS luyện tập độc quyền — để việc học tập trung đúng vào điểm cần cải thiện.
               </p>
             </div>
           </div>
