@@ -10,10 +10,10 @@ function SegmentsSection() {
       headline: 'Nắm chắc tấm vé vào Đại học Top đầu',
       bullets: [
         'Tối ưu lộ trình, học song song THPT & kỳ thi ĐGNL mà không lo quá tải.',
-        'Rút ngắn 50% thời gian ôn luyện so với các mô hình truyền thống.',
+        'Lộ trình cá nhân hoá giúp tập trung đúng điểm yếu, tránh học dàn trải.',
         'Lịch học buổi tối & cuối tuần linh hoạt, quy đổi điểm xét tuyển sớm.',
       ],
-      cta: 'Đăng ký test trình độ MIỄN PHÍ', ctaSub: null,
+      cta: 'Nhận tư vấn lộ trình', ctaSub: null,
       color: E.red, accent: 'red', slot: 'seg-student', src: 'seg-student.jpg', slotPh: 'Nữ sinh cấp 3, đeo balo',
     },
     {
@@ -26,7 +26,7 @@ function SegmentsSection() {
         'Tối ưu quỹ thời gian eo hẹp với hệ sinh thái luyện tập Smart Dictation 24/7.',
         'Giải pháp đầu tư thông minh cho sự nghiệp chỉ từ 1.500.000đ/tháng.',
       ],
-      cta: 'Tư vấn lộ trình cấp tốc', ctaSub: null,
+      cta: 'Nhận tư vấn lộ trình', ctaSub: null,
       color: E.data, accent: 'blue', slot: 'seg-worker', src: 'seg-worker.jpg', slotPh: 'Nam giới đi làm, laptop',
     },
     {
@@ -37,9 +37,9 @@ function SegmentsSection() {
       bullets: [
         'Minh bạch tuyệt đối với báo cáo tiến độ học tập và điểm số định kỳ.',
         'Giáo viên chủ nhiệm theo sát, lập tức liên hệ hỗ trợ khi con vắng mặt.',
-        'Cam kết môi trường học tập chất lượng, không để học viên bị bỏ lại phía sau.',
+        'Duy trì môi trường học tập chất lượng, đồng hành sát sao với từng học viên.',
       ],
-      cta: 'Nhận tư vấn lộ trình cho con', ctaSub: null,
+      cta: 'Nhận tư vấn lộ trình', ctaSub: null,
       color: E.red, accent: 'red', slot: 'seg-parent', src: 'seg-parent.jpg', slotPh: 'Gia đình (bố mẹ & con)',
     },
   ];

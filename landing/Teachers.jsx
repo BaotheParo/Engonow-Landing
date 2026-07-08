@@ -7,17 +7,17 @@ function TeachersSection() {
     { 
       icon: 'edit', 
       title: 'Sửa Writing 1-1 chuyên sâu', 
-      body: 'Phân tích chi tiết theo 4 tiêu chí chuẩn. Không trả điểm khô khan mà không kèm định hướng.' 
+      body: 'Phân tích chi tiết theo bốn tiêu chí chấm thi. Phản hồi luôn đi kèm định hướng cải thiện cụ thể, không chỉ trả điểm.' 
     },
     { 
       icon: 'heart-health-muscle', 
       title: 'Thực chiến Speaking 1-1', 
-      body: 'Luyện tập trực tiếp (Online & Offline) hàng tuần. Rèn phản xạ và chuẩn hóa phát âm đến khi làm chủ phòng thi.' 
+      body: 'Luyện tập trực tiếp (Online & Offline) hàng tuần. Rèn phản xạ và chuẩn hoá phát âm để người học tự tin hơn trong phòng thi.' 
     },
     { 
       icon: 'envelope', 
       title: 'Chăm sóc học vụ chủ động', 
-      body: 'Theo sát tiến độ học tập. Hỗ trợ lập tức khi vắng mặt, nộp bài trễ hoặc có dấu hiệu chững band.' 
+      body: 'Theo sát tiến độ học tập. Hỗ trợ kịp thời khi người học vắng mặt, nộp bài trễ hoặc có dấu hiệu chững tiến độ.' 
     },
   ];
   const teachers = [
@@ -30,7 +30,7 @@ function TeachersSection() {
     <section id="teachers" className="section" style={{ background: '#EDF6FF', borderTop: `1px solid ${E.greyLine}` }}>
       <div className="container">
         <h2 style={{ textAlign: 'center', fontFamily: E.fontHead, fontWeight: 800, fontSize: 'clamp(24px,3.4vw,32px)', color: E.inkHead, margin: '0 0 36px', letterSpacing: '-0.02em' }}>
-          Đội ngũ giáo viên chuyên môn vững vàng – Tận tâm đến từng buổi học
+          Đội ngũ giáo viên chuyên môn vững vàng — Tận tâm đến từng buổi học
         </h2>
 
         <p style={{ 
@@ -42,7 +42,7 @@ function TeachersSection() {
           maxWidth: 680, 
           margin: '-24px auto 36px' 
         }}>
-          Đội ngũ giảng dạy sở hữu IELTS 7.5+ cùng chứng chỉ sư phạm quốc tế TESOL/CELTA. Kết hợp cùng quy trình theo sát khắt khe, đảm bảo sự tiến bộ liên tục và cam kết không một ai bị bỏ lại phía sau.
+          Đội ngũ giảng dạy sở hữu IELTS 7.5+ cùng chứng chỉ sư phạm quốc tế TESOL/CELTA, đồng hành theo quy trình theo sát chặt chẽ nhằm hỗ trợ người học tiến bộ ổn định qua từng giai đoạn.
         </p>
 
         {/* 3 inline devotions */}
