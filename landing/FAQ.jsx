@@ -4,13 +4,34 @@
 function FAQSection() {
   const mobile = useIsMobile(860);
   const faqs = [
-    { q: 'EngoNow có cam kết đầu ra không?', a: 'Có. Mỗi học viên được xây dựng lộ trình cá nhân hoá với cam kết đầu ra rõ ràng theo trình độ. Giáo viên chủ nhiệm theo sát tiến độ và điều chỉnh kịp thời để đảm bảo bạn đạt mục tiêu.' },
-    { q: 'Mất bao lâu để đạt IELTS 6.5–7.0?', a: 'Tùy trình độ đầu vào, lộ trình trung bình từ 4–6 tháng cho mục tiêu 6.5–7.0. Nhờ hệ thống LMS luyện tập 24/7 và lớp sĩ số nhỏ, học viên rút ngắn tới 50% thời gian so với mô hình truyền thống.' },
-    { q: 'Lớp học Online có hiệu quả không?', a: 'Có. Lớp Online giữ sĩ số tinh gọn và vẫn duy trì đặc quyền sửa bài 1-1 mỗi tuần. Rất nhiều học viên đạt 8.0 IELTS đã học và bứt phá hoàn toàn qua hình thức Online.' },
-    { q: 'Giáo viên có sửa Writing/Speaking 1-1 không?', a: 'Có. Mỗi bài Writing được sửa chi tiết theo 4 tiêu chí chấm thi, và học viên có buổi Speaking 1-1 mỗi tuần cho đến khi thực sự tự tin — dù học Online hay Offline.' },
-    { q: 'Học phí đã bao gồm những gì?', a: 'Học phí từ 1.500.000đ/tháng đã bao gồm: lớp học, giáo viên chủ nhiệm, sửa bài 1-1, truy cập trọn đời study.engonow.com & dictation.engonow.com, và báo cáo tiến độ minh bạch. Không phí ẩn.' },
-    { q: 'Lịch học có linh hoạt cho người bận rộn không?', a: 'Rất linh hoạt. Có lớp buổi tối, cuối tuần và lớp Online. Bạn có thể chuyển Online cùng buổi khi bận đột xuất, và bảo lưu tối đa 6 tháng khi cần.' },
-    { q: 'Có được học thử LMS 7 ngày miễn phí không?', a: 'Có. Bạn được trải nghiệm miễn phí hệ thống study.engonow.com và dictation.engonow.com trong 7 ngày — luyện nghe, chép chính tả và làm bài mẫu thực tế trước khi đăng ký. Để lại số điện thoại, đội ngũ sẽ kích hoạt tài khoản học thử cho bạn ngay.' },
+    {
+      q: 'ENGONOW cam kết điều gì với người học?',
+      a: 'Chúng tôi cam kết về chất lượng đồng hành: mỗi học viên có lộ trình cá nhân hoá theo trình độ đầu vào, được sửa bài 1-1 theo tiêu chí chấm, và nhận báo cáo tiến độ minh bạch định kỳ. Giáo viên chủ nhiệm theo sát và điều chỉnh lộ trình kịp thời. Kết quả học tập phụ thuộc vào sự phối hợp giữa lộ trình, chất lượng giảng dạy và mức độ chuyên cần, hoàn thành bài tập của mỗi học viên.'
+    },
+    {
+      q: 'Mất bao lâu để đạt IELTS 6.5–7.0?',
+      a: 'Thời gian phụ thuộc vào trình độ đầu vào, mục tiêu và mức độ chuyên cần của mỗi học viên. Sau bài test định vị, giáo viên sẽ tư vấn khung thời gian phù hợp với riêng bạn. Hệ thống LMS luyện tập cùng lớp sĩ số nhỏ giúp việc học tập trung và hiệu quả hơn.'
+    },
+    {
+      q: 'Giáo viên có sửa Writing/Speaking 1-1 không?',
+      a: 'Có. Mỗi bài Writing được sửa chi tiết theo bốn tiêu chí chấm thi, và học viên có buổi Speaking 1-1 hàng tuần — áp dụng cho cả hình thức Online và Offline.'
+    },
+    {
+      q: 'Lớp học Online có hiệu quả không?',
+      a: 'Lớp Online giữ sĩ số tinh gọn và vẫn duy trì quy trình sửa bài 1-1 hàng tuần như lớp Offline. Nhiều học viên đã tiến bộ tốt qua hình thức Online nhờ tính tương tác cao và hệ thống luyện tập LMS đi kèm.'
+    },
+    {
+      q: 'Học phí đã bao gồm những gì?',
+      a: 'Học phí từ 1.500.000đ/tháng đã bao gồm: lớp học, giáo viên chủ nhiệm, sửa bài 1-1, quyền truy cập study.engonow.com & dictation.engonow.com trong suốt khoá học, và báo cáo tiến độ minh bạch. Không phát sinh phí ẩn.'
+    },
+    {
+      q: 'Có được học thử LMS 7 ngày miễn phí không?',
+      a: 'Có. Bạn được trải nghiệm miễn phí study.engonow.com và dictation.engonow.com trong 7 ngày để luyện nghe, chép chính tả và làm bài mẫu trước khi đăng ký. Để lại số điện thoại, đội ngũ sẽ kích hoạt tài khoản học thử cho bạn.'
+    },
+    {
+      q: 'Lịch học có linh hoạt cho người bận rộn không?',
+      a: 'Rất linh hoạt. Có lớp buổi tối, cuối tuần và lớp Online. Bạn có thể chuyển sang học Online khi bận đột xuất, và bảo lưu tối đa 6 tháng khi cần.'
+    }
   ];
   const [open, setOpen] = React.useState(0);
   const left = faqs.filter((_, i) => i % 2 === 0);
@@ -63,10 +84,10 @@ function FinalCTA() {
         </div>
         <div style={{ display: 'flex', gap: 12, flexShrink: 0, width: mobile ? '100%' : 'auto', flexDirection: mobile ? 'column' : 'row' }}>
           <a href="#" data-lead="lms-trial" className="pill" style={{ background: '#fff', color: E.ink, padding: '15px 26px', fontSize: 14, justifyContent: 'center' }}>
-            Học thử LMS 7 ngày miễn phí
+            Nhận tư vấn lộ trình
           </a>
           <a href="#" data-lead="cta" className="pill" style={{ background: E.red700, color: '#fff', padding: '15px 26px', fontSize: 14, border: '1px solid rgba(255,255,255,0.3)', justifyContent: 'center' }}>
-            NHẬN LỘ TRÌNH MIỄN PHÍ
+            Nhận tư vấn lộ trình
           </a>
         </div>
       </div>
