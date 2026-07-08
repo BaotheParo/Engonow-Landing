@@ -41,7 +41,7 @@ function TopNav() {
               >{l.label}</a>
             ))}
             <Pill href="#final-cta" variant="primary" style={{ padding: '11px 22px', fontSize: 14, marginLeft: 6 }}>
-              Nhận lộ trình
+              Nhận tư vấn lộ trình
             </Pill>
           </nav>
         )}
@@ -72,7 +72,7 @@ function TopNav() {
             ))}
           </nav>
           <a href="#final-cta" onClick={() => setOpen(false)} className="pill pill-primary" style={{ width: '100%', marginTop: 16 }}>
-            Nhận lộ trình MIỄN PHÍ
+            Nhận tư vấn lộ trình
           </a>
         </div>
       )}
@@ -83,9 +83,9 @@ function TopNav() {
 function Hero() {
   const mobile = useIsMobile(860);
   const benefits = [
-    'Giáo viên 7.5+ IELTS · chứng chỉ TESOL/CELTA',
-    'Hệ sinh thái LMS học 24/7 — study.engonow.com & dictation.engonow.com',
-    '4 cơ sở phía Tây Sài Gòn + mạng lưới học online toàn quốc',
+    'Giáo viên IELTS 7.5+ · chứng chỉ sư phạm quốc tế TESOL/CELTA',
+    'Hệ sinh thái LMS học mọi lúc — study.engonow.com & dictation.engonow.com',
+    '4 cơ sở phía Tây Sài Gòn · lớp Online tương tác toàn quốc',
   ];
   return (
     <section id="top" style={{
@@ -102,27 +102,23 @@ function Hero() {
           {/* Left column */}
           <div style={{ order: mobile ? 2 : 1 }}>
             <div style={{ fontFamily: E.fontUi, fontSize: 12.5, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: E.red, marginBottom: 18 }}>
-              Luyện thi IELTS · 7.0–8.0
+              Đạt IELTS 7.0–8.0 với lộ trình tinh gọn
             </div>
 
             <h1 style={{
               fontFamily: E.fontHead, fontWeight: 800,
-              fontSize: 'clamp(28px, 6.8vw, 60px)', lineHeight: 1.05, letterSpacing: '-0.03em',
+              fontSize: 'clamp(28px, 5vw, 46px)', lineHeight: 1.25, letterSpacing: '-0.03em',
               color: E.inkHead, margin: 0,
             }}>
-              Đạt <span style={{ color: E.red }}>IELTS&nbsp;7.0–8.0</span> trong một nửa thời gian
+              Chinh phục <span style={{ color: E.red }}>IELTS 7.0–8.0</span> bằng lộ trình cá nhân hoá
             </h1>
 
             <p style={{
               fontFamily: E.fontBody, fontSize: mobile ? 16 : 18, color: E.ink2,
               marginTop: 18, fontWeight: 500, lineHeight: 1.5, maxWidth: 520,
             }}>
-              Lộ trình cá nhân hoá theo phương pháp M.E.E.R. — đầu tư thông minh chỉ từ{' '}
-              <strong style={{ color: E.ink, fontWeight: 700 }}>1.500.000đ/tháng</strong>.
+              Lộ trình được thiết kế riêng theo trình độ đầu vào và mục tiêu của bạn, kết hợp phương pháp phản hồi M.E.E.R. và đội ngũ giáo viên IELTS 7.5+. Học phí đầu tư từ 1.500.000đ/tháng.
             </p>
-
-            {/* Signature bar — kept in the left flow on mobile; moved under the photo on desktop */}
-            {mobile && <TimeSavedBar mobile={mobile} />}
 
             {/* Benefits — hairline-ruled rows, no icons */}
             <div style={{ marginTop: 26, borderTop: `1px solid ${E.line}` }}>
@@ -136,7 +132,7 @@ function Hero() {
 
             <div style={{ display: 'flex', gap: 12, marginTop: 28, flexWrap: 'wrap' }}>
               <Pill href="#final-cta" variant="primary" style={mobile ? { width: '100%' } : undefined}>
-                Nhận lộ trình miễn phí
+                Nhận tư vấn lộ trình
               </Pill>
               <a href="https://zalo.me/0399994132" target="_blank" rel="noopener noreferrer" className="pill pill-ghost" style={mobile ? { width: '100%' } : undefined}>
                 Liên hệ qua Zalo
@@ -144,7 +140,7 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right column — hero photo (proof bar is mobile-only) */}
+          {/* Right column — hero photo */}
           <div style={{ order: mobile ? 1 : 2 }}>
             <HeroVisual mobile={mobile} />
           </div>
@@ -193,14 +189,36 @@ function HeroVisual({ mobile }) {
           placeholder="Ảnh học viên / lớp học" />
       </div>
 
-      {/* Floating credential chip — data tone (sits inside the photo on mobile) */}
+      {/* Badge 1: TESOL · CELTA */}
       <div style={{
-        position: 'absolute', bottom: mobile ? 12 : 22, right: mobile ? 12 : -16, zIndex: 4,
-        background: E.data, color: '#fff', borderRadius: 12, padding: mobile ? '9px 13px' : '15px 20px',
-        boxShadow: E.shadowXl,
+        position: 'absolute',
+        top: 24,
+        left: mobile ? 12 : -24,
+        zIndex: 4,
+        background: '#1D00B7',
+        borderRadius: 10,
+        padding: mobile ? '8px 12px' : '12px 18px',
+        boxShadow: '0 8px 24px rgba(29, 0, 183, 0.25)',
       }}>
-        <div style={{ fontFamily: E.fontHead, fontWeight: 800, fontSize: mobile ? 16 : 28, lineHeight: 1, letterSpacing: '-0.02em' }}>TESOL · CELTA</div>
-        <div style={{ fontFamily: E.fontUi, fontSize: mobile ? 10 : 11, fontWeight: 600, color: 'rgba(255,255,255,0.78)', marginTop: mobile ? 3 : 5 }}>giáo viên 7.5+ IELTS</div>
+        <span style={{ fontFamily: E.fontUi, fontWeight: 700, fontSize: mobile ? 13 : 15, color: '#FFFFFF' }}>
+          TESOL · CELTA
+        </span>
+      </div>
+
+      {/* Badge 2: Giáo viên IELTS 7.5+ */}
+      <div style={{
+        position: 'absolute',
+        bottom: 40,
+        right: mobile ? 12 : -24,
+        zIndex: 4,
+        background: '#1D00B7',
+        borderRadius: 10,
+        padding: mobile ? '8px 12px' : '12px 18px',
+        boxShadow: '0 8px 24px rgba(29, 0, 183, 0.25)',
+      }}>
+        <span style={{ fontFamily: E.fontUi, fontWeight: 700, fontSize: mobile ? 13 : 15, color: '#FFFFFF' }}>
+          Giáo viên IELTS 7.5+
+        </span>
       </div>
     </div>
   );

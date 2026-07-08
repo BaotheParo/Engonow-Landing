@@ -1,7 +1,7 @@
 // Floating chat assistant — "Trợ lý ENGONOW", docked bottom-right
 
 const BOT_QUICK = [
-  { label: 'Nhận lộ trình miễn phí', key: 'lead' },
+  { label: 'Nhận tư vấn lộ trình', key: 'lead' },
   { label: 'Học phí bao nhiêu?', key: 'price' },
   { label: 'Học Online được không?', key: 'online' },
   { label: 'Gọi tư vấn', key: 'call' },
@@ -15,14 +15,14 @@ function botReply(text) {
   if (/(học phí|hoc phi|giá|gia|bao nhiêu|phí|chi phí)/.test(t))
     return { text: 'Học phí ENGONOW chỉ từ 1.500.000đ/tháng — minh bạch, không phí ẩn. Để mình gửi báo giá & lộ trình chi tiết theo trình độ của bạn nhé!', chips: [{ label: 'Nhận báo giá', key: 'lead' }, { label: 'Gọi tư vấn', key: 'call' }] };
   if (/(online|từ xa|tu xa|ở nhà)/.test(t))
-    return { text: 'Có ạ! Lớp Online giữ sĩ số nhỏ và vẫn sửa bài 1-1 mỗi tuần. Nhiều bạn đạt 8.0 IELTS học hoàn toàn Online. Bạn muốn học thử LMS 7 ngày miễn phí không?', chips: [{ label: 'Học thử LMS', key: 'trial' }, { label: 'Nhận lộ trình', key: 'lead' }] };
+    return { text: 'Có ạ! Lớp Online giữ sĩ số nhỏ và vẫn sửa bài 1-1 mỗi tuần. Nhiều bạn đạt 8.0 IELTS học hoàn toàn Online. Bạn muốn học thử LMS 7 ngày miễn phí không?', chips: [{ label: 'Học thử LMS', key: 'trial' }, { label: 'Nhận tư vấn lộ trình', key: 'lead' }] };
   if (/(cơ sở|co so|địa chỉ|dia chi|ở đâu|chi nhánh|offline)/.test(t))
-    return { text: 'ENGONOW có 4 cơ sở phía Tây Sài Gòn (Bình Tân – Bình Thạnh) và lớp Online toàn quốc. Bạn xem bản đồ & chỉ đường ở cuối trang nhé!', chips: [{ label: 'Nhận lộ trình', key: 'lead' }, { label: 'Gọi tư vấn', key: 'call' }] };
+    return { text: 'ENGONOW có 4 cơ sở phía Tây Sài Gòn (Bình Tân – Bình Thạnh) và lớp Online toàn quốc. Bạn xem bản đồ & chỉ đường ở cuối trang nhé!', chips: [{ label: 'Nhận tư vấn lộ trình', key: 'lead' }, { label: 'Gọi tư vấn', key: 'call' }] };
   if (/(giáo viên|giao vien|thầy|cô|teacher)/.test(t))
     return { text: 'Đội ngũ giáo viên 7.5+ IELTS, chứng chỉ TESOL/CELTA, sửa Writing & Speaking 1-1 đến khi bạn tự tin. Để mình kết nối bạn với giáo viên phù hợp nhé?', chips: [{ label: 'Nhận tư vấn', key: 'lead' }] };
   if (/(lộ trình|lo trinh|đăng ký|dang ky|test|mục tiêu|muc tieu|bắt đầu)/.test(t))
     return { text: 'Tuyệt vời! Bạn để lại tên + số điện thoại, đội ngũ ENGONOW sẽ test trình độ và gửi lộ trình cá nhân hóa trong 24 giờ — hoàn toàn miễn phí.', chips: [{ label: 'Để lại thông tin', key: 'lead' }] };
-  return { text: 'Cảm ơn bạn! Để được tư vấn nhanh nhất, bạn có thể để lại thông tin hoặc gọi hotline 039.999.4132. Mình có thể giúp gì thêm?', chips: [{ label: 'Nhận lộ trình miễn phí', key: 'lead' }, { label: 'Gọi tư vấn', key: 'call' }] };
+  return { text: 'Cảm ơn bạn! Để được tư vấn nhanh nhất, bạn có thể để lại thông tin hoặc gọi hotline 039.999.4132. Mình có thể giúp gì thêm?', chips: [{ label: 'Nhận tư vấn lộ trình', key: 'lead' }, { label: 'Gọi tư vấn', key: 'call' }] };
 }
 
 function ChatBot() {

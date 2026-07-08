@@ -152,7 +152,7 @@ function PricingSection() {
           </div>
 
           <Pill href="#final-cta" variant="primary" style={{ padding: '18px 36px', fontSize: 16, flexShrink: 0 }}>
-            Nhận lộ trình miễn phí
+            Nhận tư vấn lộ trình
           </Pill>
         </div>
       </div>
